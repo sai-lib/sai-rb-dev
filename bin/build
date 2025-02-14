@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+#MISE description="Build the gem"
+#MISE alias="b"
+
+gem build -V sai.gemspec
+mkdir -p pkg
+mv *.gem pkg/

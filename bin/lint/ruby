@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+#MISE description="Lint ruby with RuboCop"
+#MISE alias="lint:rb"
+
+#USAGE flag "-a --autocorrect" help="Autocorrect offenses (only when it's safe)."
+#USAGE flag "-A --autocorrect-all" help="Autocorrect offenses (safe and unsafe)."
+
+if [ "$usage_autocorrect" = "true" ]; then
+  bundle exec rubocop -a
+elif [ "$usage_autocorrect_all" = "true" ]; then
+  bundle exec rubocop -A
+else
+  bundle exec rubocop
+fi
+

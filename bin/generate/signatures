@@ -1,0 +1,86 @@
+#!/usr/bin/env ruby
+#MISE description="Generate RBS signatures"
+#MISE alias="g:sig"
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'pathname'
+
+module Sai
+  module CLI
+    module Generate
+      module RBSSignature
+        SIG_DIRECTORY = Pathname.new(File.expand_path('../../sig', File.dirname(__FILE__))).freeze
+
+        class << self
+          def generate
+            clear_sig_directory!
+            generate_signatures
+            clean_signatures
+          end
+
+          private
+
+          def clean_rbs_comments(content)
+            lines = content.lines
+            cleaned_lines = []
+            comment_block_to_remove = nil
+
+            lines.each do |line|
+              comment_block_to_remove = update_comment_block(line, comment_block_to_remove)
+              cleaned_lines << line unless skip_line?(line, comment_block_to_remove)
+            end
+
+            # Clean up any multiple blank lines
+            content = cleaned_lines.join
+            content.gsub!(/\n{3,}/, "\n\n")
+            "#{content.strip}\n"
+          end
+
+          def clean_signatures
+            SIG_DIRECTORY.glob('**/*.rbs').each do |signature_file|
+              content = signature_file.read
+              cleaned_content = clean_rbs_comments(content)
+              signature_file.write(cleaned_content)
+            end
+          end
+
+          def clear_sig_directory!
+            manifest_file = SIG_DIRECTORY.join('manifest.yaml')
+            manifest = manifest_file.read if manifest_file.exist?
+            FileUtils.rm_rf(SIG_DIRECTORY.to_s)
+            FileUtils.mkdir_p(SIG_DIRECTORY.to_s)
+            manifest_file.write(manifest) if manifest
+          end
+
+          def generate_signatures
+            system 'bundle exec rbs-inline lib --opt-out --output=./sig'
+          end
+
+          def rbs_comment_start?(line)
+            line.strip.match?(/^\#.*@rbs/)
+          end
+
+          def skip_line?(line, comment_block_to_remove)
+            return true if line.strip.start_with?('# Generated from')
+            return true if comment_block_to_remove && line.start_with?(comment_block_to_remove)
+
+            false
+          end
+
+          def update_comment_block(line, comment_block_to_remove)
+            if rbs_comment_start?(line)
+              (line.match(/^(\s*#)/) || [])[1]
+            elsif comment_block_to_remove && !line.start_with?(comment_block_to_remove)
+              nil
+            else
+              comment_block_to_remove
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+Sai::CLI::Generate::RBSSignature.generate

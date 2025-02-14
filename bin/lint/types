@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#MISE description="Lint ruby types with Steep"
+
+#USAGE flag "--severity-level <LEVEL>" default="error" help="Specify the minimum diagnostic severity to be recognized as an error (defaults: warning): error, warning, information, or hint"
+
+if [ -n $usage_severity_level ]; then
+  bundle exec steep check --severity-level error
+else
+  bundle exec steep check --severity-level $usage_severity_level
+fi

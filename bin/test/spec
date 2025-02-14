@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+#MISE description="Run unit tests"
+
+#USAGE flag "--coverage" negate="--no-coverage" default="true" help="Run specs with coverage reporting"
+#USAGE flag "--rbs" help="Run specs with RBS"
+
+run_specs() {
+  if [ "$usage_rbs" = "true" ]; then
+    RUBYOPT='-r bundler/setup -r rbs/test/setup' \
+      RBS_TEST_TARGET=Sai::* \
+      RBS_TEST_LOGLEVEL=error \
+      RBS_TEST_DOUBLE_SUITE=rspec \
+      RBS_TEST_OPT='-I sig' \
+      bundle exec rspec --tag ~rbs:skip
+  else
+    bundle exec rspec
+  fi
+}
+
+if [ "$usage_coverage" = "true" ]; then
+  COVERAGE=true run_specs
+elif [ "$usage_coverage" = "false" ]; then
+  run_specs
+fi

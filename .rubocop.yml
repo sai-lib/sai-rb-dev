@@ -1,0 +1,10 @@
+inherit_from:
+  - .rubocop-codacy.yml
+
+require:
+  - rubocop-on-rbs
+  - rubocop-ordered_methods
+  - rubocop-yard
+
+RBS:
+  Enabled: true

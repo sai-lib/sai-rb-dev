@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+#MISE description="Build the gem"
+#MISE alias="ci"
+
+bin/lint/ruby && \
+  bin/test/spec && \
+  RUBYOPT='-r bundler/setup -r rbs/test/setup' \
+  RBS_TEST_TARGET=Sai::* \
+  RBS_TEST_LOGLEVEL=error \
+  RBS_TEST_DOUBLE_SUITE=rspec \
+  RBS_TEST_OPT='-I sig' \
+  bundle exec rspec --tag ~rbs:skip && \
+  bin/lint/types && \
+  bin/build

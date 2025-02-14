@@ -1,0 +1,6 @@
+inherit_from:
+  - .rubocop-codacy.yml
+
+require:
+  - rubocop-ordered_methods
+  - rubocop-yard

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+#MISE description="Clean out tmp and log files"
+#MISE alias="cln"
+
+find tmp -mindepth 1 ! -name ".keep" -exec rm -rf {} +
+find logs -mindepth 1 ! -name ".keep" -exec rm -rf {} +
+rm -rf .yardoc
+rm -rf coverage
+rm -rf doc

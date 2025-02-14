@@ -1,0 +1,15 @@
+[env]
+RBS_TEST_DOUBLE_SUITE = "rspec"
+RBS_TEST_LOGLEVEL = "error"
+RBS_TEST_OPT = "-I sig"
+RBS_TEST_TARGET = "Sai::*"
+
+[task_config]
+includes = ["bin"]
+
+[tasks.lint]
+description = "Run all linters for the project"
+depends = ["lint:ruby"]
+
+[tools]
+ruby = "3.1"

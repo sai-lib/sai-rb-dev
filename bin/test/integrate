@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+#MISE description="Build the gem"
+#MISE alias="ci"
+
+bin/lint/ruby && bin/test/spec && bin/build

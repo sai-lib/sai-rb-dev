@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+#MISE description="Run unit tests"
+
+#USAGE flag "--coverage" negate="--no-coverage" default="true" help="Run specs with coverage reporting"
+#USAGE flag "--rbs" help="Run specs with RBS"
+
+if [ "$usage_coverage" = "true" ]; then
+  COVERAGE=true bundle exec rspec
+else
+  bundle exec rspec
+fi

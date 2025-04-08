@@ -23,9 +23,11 @@ module Sai
   autoload :DataStore,              'sai/data_store'
   autoload :Enum,                   'sai/enum'
   autoload :Error,                  'sai/errors/error'
+  autoload :Function,               'sai/function'
   autoload :Inflection,             'sai/inflection'
   autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
+  autoload :Model,                  'sai/model'
   autoload :TypeError,              'sai/errors/type_error'
 
   EMPTY_ARRAY = [].freeze
@@ -44,6 +46,8 @@ module Sai
   private_constant :PERCENTAGE_RANGE
 
   class << self
+    include Function
+
     def cache
       @cache ||= Sai.config.default_cache_store.new(max_size: Sai.config.default_cache_size)
     end

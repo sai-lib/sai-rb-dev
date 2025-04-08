@@ -17,6 +17,7 @@ decision.
 * [ADR 007: Documentation Standards](./007-documentation-standards.md)
 * [ADR 008: Versioning and Deprecation Policy](./008-versioning-and-deprecation-policy.md)
 * [ADR 009: Enum System for Magic Value Elimination](./009-enum-system-for-magic-value-elimination.md)
+* [ADR 010: Caching Strategy](./010-caching-strategy.md)
 
 ## ADR Statuses
 

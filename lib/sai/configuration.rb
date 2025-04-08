@@ -2,6 +2,8 @@
 
 module Sai
   class Configuration
+    attr_reader :default_cache_store
+
     class << self
       def defaults
         @defaults ||= EMPTY_HASH
@@ -30,8 +32,23 @@ module Sai
       end
     end
 
+    default :cache_size, 2_048_000, Integer
+
     def initialize
       self.class.defaults.each_pair { |attribute, value| instance_variable_set(:"@default_#{attribute}", value) }
+      @default_cache_store ||= Sai::Enum::CacheStore::MEMORY
+    end
+
+    def disable_caching
+      @default_cache_store = Sai::Enum::CacheStore::Null
+
+      Sai.instance_variable_set(:@cache, Sai::Cache::NullStore.new)
+    end
+
+    def enable_caching(store: default_cache_store, size: default_cache_size)
+      @default_cache_size = size
+      @default_cache_store = store
+      Sai.instance_variable_set(:@cache, store.new(max_size: size))
     end
   end
 end

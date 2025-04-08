@@ -17,6 +17,7 @@
 # @since 0.1.0
 module Sai
   autoload :ArgumentError, 'sai/errors/argument_error'
+  autoload :Cache,         'sai/cache'
   autoload :Configuration, 'sai/configuration'
   autoload :Enum,          'sai/enum'
   autoload :Error,         'sai/errors/error'
@@ -39,6 +40,10 @@ module Sai
   private_constant :PERCENTAGE_RANGE
 
   class << self
+    def cache
+      @cache ||= Sai.config.default_cache_store.new(max_size: Sai.config.default_cache_size)
+    end
+
     def config
       @config ||= Configuration.new
     end

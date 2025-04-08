@@ -16,4 +16,22 @@
 #
 # @since 0.1.0
 module Sai
+  autoload :ArgumentError, 'sai/errors/argument_error'
+  autoload :Error,         'sai/errors/error'
+  autoload :TypeError,     'sai/errors/type_error'
+
+  EMPTY_ARRAY = [].freeze
+  private_constant :EMPTY_ARRAY
+
+  EMPTY_HASH = {}.freeze
+  private_constant :EMPTY_HASH
+
+  EMPTY_STRING = ''
+  private_constant :EMPTY_STRING
+
+  FRACTION_RANGE = 0.0..1.0
+  private_constant :FRACTION_RANGE
+
+  PERCENTAGE_RANGE = 0.0..100.0
+  private_constant :PERCENTAGE_RANGE
 end

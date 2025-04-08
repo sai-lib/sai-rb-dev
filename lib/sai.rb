@@ -17,6 +17,7 @@
 # @since 0.1.0
 module Sai
   autoload :ArgumentError, 'sai/errors/argument_error'
+  autoload :Enum,          'sai/enum'
   autoload :Error,         'sai/errors/error'
   autoload :Inflection,    'sai/inflection'
   autoload :TypeError,     'sai/errors/type_error'
@@ -35,4 +36,10 @@ module Sai
 
   PERCENTAGE_RANGE = 0.0..100.0
   private_constant :PERCENTAGE_RANGE
+
+  class << self
+    def enum
+      Enum
+    end
+  end
 end

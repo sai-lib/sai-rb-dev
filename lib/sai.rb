@@ -16,15 +16,17 @@
 #
 # @since 0.1.0
 module Sai
-  autoload :ArgumentError,        'sai/errors/argument_error'
-  autoload :Cache,                'sai/cache'
-  autoload :Configuration,        'sai/configuration'
-  autoload :DataStore,            'sai/data_store'
-  autoload :Enum,                 'sai/enum'
-  autoload :Error,                'sai/errors/error'
-  autoload :Inflection,           'sai/inflection'
-  autoload :InvalidDataFileError, 'sai/errors/invalid_data_file_error'
-  autoload :TypeError,            'sai/errors/type_error'
+  autoload :ArgumentError,          'sai/errors/argument_error'
+  autoload :Cache,                  'sai/cache'
+  autoload :Channel,                'sai/channel'
+  autoload :Configuration,          'sai/configuration'
+  autoload :DataStore,              'sai/data_store'
+  autoload :Enum,                   'sai/enum'
+  autoload :Error,                  'sai/errors/error'
+  autoload :Inflection,             'sai/inflection'
+  autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
+  autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
+  autoload :TypeError,              'sai/errors/type_error'
 
   EMPTY_ARRAY = [].freeze
   private_constant :EMPTY_ARRAY

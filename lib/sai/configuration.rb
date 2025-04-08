@@ -34,6 +34,11 @@ module Sai
 
     default :cache_size, 2_048_000, Integer
 
+    default :chromatic_adaptation_transform, Sai::Enum::ChromaticAdaptationTransform::BRADFORD,
+            Sai::ChromaticAdaptationTransform, Sai::Enum::ChromaticAdaptationTransform
+    alias default_cat default_chromatic_adaptation_transform
+    alias set_default_cat set_default_chromatic_adaptation_transform
+
     def initialize
       self.class.defaults.each_pair { |attribute, value| instance_variable_set(:"@default_#{attribute}", value) }
       @default_cache_store ||= Sai::Enum::CacheStore::MEMORY

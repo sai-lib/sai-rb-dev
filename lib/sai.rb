@@ -18,6 +18,7 @@
 module Sai
   autoload :ArgumentError, 'sai/errors/argument_error'
   autoload :Error,         'sai/errors/error'
+  autoload :Inflection,    'sai/inflection'
   autoload :TypeError,     'sai/errors/type_error'
 
   EMPTY_ARRAY = [].freeze

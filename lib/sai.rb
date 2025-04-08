@@ -17,6 +17,7 @@
 # @since 0.1.0
 module Sai
   autoload :ArgumentError, 'sai/errors/argument_error'
+  autoload :Configuration, 'sai/configuration'
   autoload :Enum,          'sai/enum'
   autoload :Error,         'sai/errors/error'
   autoload :Inflection,    'sai/inflection'
@@ -38,6 +39,14 @@ module Sai
   private_constant :PERCENTAGE_RANGE
 
   class << self
+    def config
+      @config ||= Configuration.new
+    end
+
+    def configure(&block)
+      block && block.arity == 1 ? yield(config) : config.instance_exec(&block)
+    end
+
     def enum
       Enum
     end

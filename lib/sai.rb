@@ -16,13 +16,15 @@
 #
 # @since 0.1.0
 module Sai
-  autoload :ArgumentError, 'sai/errors/argument_error'
-  autoload :Cache,         'sai/cache'
-  autoload :Configuration, 'sai/configuration'
-  autoload :Enum,          'sai/enum'
-  autoload :Error,         'sai/errors/error'
-  autoload :Inflection,    'sai/inflection'
-  autoload :TypeError,     'sai/errors/type_error'
+  autoload :ArgumentError,        'sai/errors/argument_error'
+  autoload :Cache,                'sai/cache'
+  autoload :Configuration,        'sai/configuration'
+  autoload :DataStore,            'sai/data_store'
+  autoload :Enum,                 'sai/enum'
+  autoload :Error,                'sai/errors/error'
+  autoload :Inflection,           'sai/inflection'
+  autoload :InvalidDataFileError, 'sai/errors/invalid_data_file_error'
+  autoload :TypeError,            'sai/errors/type_error'
 
   EMPTY_ARRAY = [].freeze
   private_constant :EMPTY_ARRAY
@@ -50,6 +52,10 @@ module Sai
 
     def configure(&block)
       block && block.arity == 1 ? yield(config) : config.instance_exec(&block)
+    end
+
+    def data_store
+      @data_store ||= DataStore.new
     end
 
     def enum

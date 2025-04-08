@@ -22,16 +22,20 @@ module Sai
   autoload :Chromaticity,           'sai/chromaticity'
   autoload :Configuration,          'sai/configuration'
   autoload :DataStore,              'sai/data_store'
+  autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'
   autoload :Enum,                   'sai/enum'
   autoload :Error,                  'sai/errors/error'
   autoload :Function,               'sai/function'
   autoload :Inflection,             'sai/inflection'
   autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
+  autoload :Matrix,                 'sai/matrix'
+  autoload :MatrixError,            'sai/errors/matrix_error'
   autoload :Model,                  'sai/model'
   autoload :TypeError,              'sai/errors/type_error'
   autoload :UnevenWavelengthError,  'sai/errors/uneven_wavelength_error'
   autoload :WavelengthRange,        'sai/wavelength_range'
+  autoload :ZeroDeterminantError,   'sai/errors/zero_determinant_error'
 
   EMPTY_ARRAY = [].freeze
   private_constant :EMPTY_ARRAY

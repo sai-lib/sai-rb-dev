@@ -19,6 +19,7 @@ module Sai
   autoload :ArgumentError,          'sai/errors/argument_error'
   autoload :Cache,                  'sai/cache'
   autoload :Channel,                'sai/channel'
+  autoload :Chromaticity,           'sai/chromaticity'
   autoload :Configuration,          'sai/configuration'
   autoload :DataStore,              'sai/data_store'
   autoload :Enum,                   'sai/enum'

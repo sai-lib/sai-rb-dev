@@ -30,6 +30,7 @@ module Sai
   autoload :Inflection,                   'sai/inflection'
   autoload :InvalidColorValueError,       'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,         'sai/errors/invalid_data_file_error'
+  autoload :ManagedAttributes,            'sai/managed_attributes'
   autoload :Matrix,                       'sai/matrix'
   autoload :MatrixError,                  'sai/errors/matrix_error'
   autoload :Model,                        'sai/model'

@@ -39,6 +39,11 @@ module Sai
     alias default_cat default_chromatic_adaptation_transform
     alias set_default_cat set_default_chromatic_adaptation_transform
 
+    default :cone_fundamentals_transform, Sai::Enum::ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ,
+            Sai::ChromaticAdaptationTransform, Sai::Enum::ChromaticAdaptationTransform
+
+    default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer
+
     def initialize
       self.class.defaults.each_pair { |attribute, value| instance_variable_set(:"@default_#{attribute}", value) }
       @default_cache_store ||= Sai::Enum::CacheStore::MEMORY

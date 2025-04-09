@@ -34,6 +34,7 @@ module Sai
   autoload :Matrix,                       'sai/matrix'
   autoload :MatrixError,                  'sai/errors/matrix_error'
   autoload :Model,                        'sai/model'
+  autoload :Observer,                     'sai/observer'
   autoload :TypeError,                    'sai/errors/type_error'
   autoload :UnevenWavelengthError,        'sai/errors/uneven_wavelength_error'
   autoload :WavelengthRange,              'sai/wavelength_range'

@@ -30,6 +30,8 @@ module Sai
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
   autoload :Model,                  'sai/model'
   autoload :TypeError,              'sai/errors/type_error'
+  autoload :UnevenWavelengthError,  'sai/errors/uneven_wavelength_error'
+  autoload :WavelengthRange,        'sai/wavelength_range'
 
   EMPTY_ARRAY = [].freeze
   private_constant :EMPTY_ARRAY

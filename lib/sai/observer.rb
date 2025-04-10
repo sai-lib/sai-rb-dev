@@ -57,6 +57,43 @@ module Sai
       freeze
     end
 
+    def spectral_power_distribution_to_xyz(spectral_power_distribution)
+      x, y, z = Sai.cache.fetch(Observer, :spectral_power_distribution_to_xyz, hash,
+                                spectral_power_distribution.hash) do
+        unless spectral_power_distribution.is_a?(Illuminant::SpectralPowerDistribution)
+          raise TypeError, '`spectral_power_distribution` is invalid. ' \
+                           'Expected `Sai::Illuminant::SpectralPowerDistribution`, ' \
+                           "got: #{spectral_power_distribution.inspect}"
+        end
+
+        channels = [0.0, 0.0, 0.0]
+        step = color_matching_function.step
+
+        color_matching_function.each do |wavelength, xyz|
+          spd_value = spectral_power_distribution.at(wavelength)
+          next if spd_value.nil?
+
+          xyz_array = xyz.to_a
+
+          channels = channels.map.with_index do |channel, index|
+            channel + (spd_value * xyz_array[index] * step)
+          end
+        end
+
+        if channels[1].positive?
+          scale_factor = 1.0 / channels[1]
+          channels[0] *= scale_factor
+          channels[1] = 1.0
+          channels[2] *= scale_factor
+          channels
+        else
+          [0.0, 0.0, 0.0]
+        end
+      end
+      Model::XYZ.new(x, y, z)
+    end
+    alias spd_to_xyz spectral_power_distribution_to_xyz
+
     def with_cone_transform(new_cone_transform)
       new_cone_transform = process_attribute!(:cone_transform, new_cone_transform)
 

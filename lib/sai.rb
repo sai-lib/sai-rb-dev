@@ -28,6 +28,7 @@ module Sai
   autoload :Error,                        'sai/errors/error'
   autoload :Formula,                      'sai/formula'
   autoload :Function,                     'sai/function'
+  autoload :Illuminant,                   'sai/illuminant'
   autoload :Inflection,                   'sai/inflection'
   autoload :InvalidColorValueError,       'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,         'sai/errors/invalid_data_file_error'

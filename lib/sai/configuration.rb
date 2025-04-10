@@ -48,6 +48,8 @@ module Sai
     alias default_cct_formula default_correlated_color_temperature_formula
     alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+    default :illuminant, Sai::Enum::Illuminant::D65, Sai::Illuminant, Sai::Enum::Illuminant
+
     default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer
 
     def initialize

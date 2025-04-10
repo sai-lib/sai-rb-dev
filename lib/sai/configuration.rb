@@ -42,6 +42,12 @@ module Sai
     default :cone_fundamentals_transform, Sai::Enum::ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ,
             Sai::ChromaticAdaptationTransform, Sai::Enum::ChromaticAdaptationTransform
 
+    default :correlated_color_temperature_formula, Sai::Enum::Formula::CorrelatedColorTemperature::OHNO,
+            ->(f) { f.name.start_with?(Sai::Formula::CorrelatedColorTemperature.name) },
+            Sai::Enum::Formula::CorrelatedColorTemperature
+    alias default_cct_formula default_correlated_color_temperature_formula
+    alias set_default_cct_formula set_default_correlated_color_temperature_formula
+
     default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer
 
     def initialize

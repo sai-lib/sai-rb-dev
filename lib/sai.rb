@@ -26,6 +26,7 @@ module Sai
   autoload :DimensionMismatchError,       'sai/errors/dimension_mismatch_error'
   autoload :Enum,                         'sai/enum'
   autoload :Error,                        'sai/errors/error'
+  autoload :Formula,                      'sai/formula'
   autoload :Function,                     'sai/function'
   autoload :Inflection,                   'sai/inflection'
   autoload :InvalidColorValueError,       'sai/errors/invalid_color_value_error'

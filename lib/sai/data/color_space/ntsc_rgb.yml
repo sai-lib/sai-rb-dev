@@ -1,0 +1,17 @@
+name: NTSC RGB
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :c
+category: :broadcast
+red_primary_chromaticity:
+  - 0.67
+  - 0.33
+green_primary_chromaticity:
+  - 0.21
+  - 0.71
+blue_primary_chromaticity:
+  - 0.14
+  - 0.08
+gamma:
+  strategy: :linear
+  exponent: 2.2

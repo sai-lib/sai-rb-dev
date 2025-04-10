@@ -1,0 +1,22 @@
+name: ProPhoto RGB
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d50
+category: :photography
+red_primary_chromaticity:
+  - 0.7347
+  - 0.2653
+green_primary_chromaticity:
+  - 0.1596
+  - 0.8404
+blue_primary_chromaticity:
+  - 0.0366
+  - 0.0001
+gamma:
+  strategy: :transfer_function
+  exponent: 1.8
+  linear_threshold: 0.001953
+  encoded_threshold: 0.025
+  linear_scale: 16.0
+  nonlinear_scale: 1.0
+  offset: 0.0

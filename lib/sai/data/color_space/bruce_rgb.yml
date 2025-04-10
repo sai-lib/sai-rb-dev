@@ -1,0 +1,17 @@
+name: Bruce RGB
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :display
+red_primary_chromaticity:
+  - 0.64
+  - 0.33
+green_primary_chromaticity:
+  - 0.28
+  - 0.65
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma:
+  strategy: :linear
+  exponent: 2.2

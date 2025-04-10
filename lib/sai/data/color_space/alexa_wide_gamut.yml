@@ -1,0 +1,22 @@
+name: ALEXA Wide Gamut
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :cinema
+red_primary_chromaticity:
+  - 0.684
+  - 0.313
+green_primary_chromaticity:
+  - 0.221
+  - 0.848
+blue_primary_chromaticity:
+  - 0.0861
+  - -0.102
+gamma:
+  strategy: :transfer_function
+  exponent: 1.0
+  linear_threshold: 0.01
+  encoded_threshold: 0.005
+  linear_scale: 5.555556
+  nonlinear_scale: 1.0
+  offset: 0.0

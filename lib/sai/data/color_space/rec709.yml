@@ -1,0 +1,22 @@
+name: Rec. 709
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :broadcast
+red_primary_chromaticity:
+  - 0.64
+  - 0.33
+green_primary_chromaticity:
+  - 0.3
+  - 0.6
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_threshold: 0.018
+  encoded_threshold: 0.081
+  linear_scale: 4.5
+  nonlinear_scale: 1.099
+  offset: 0.099

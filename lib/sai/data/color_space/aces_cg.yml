@@ -1,0 +1,17 @@
+name: ACES CG
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d60
+category: :cinema
+red_primary_chromaticity:
+  - 0.713
+  - 0.293
+green_primary_chromaticity:
+  - 0.165
+  - 0.83
+blue_primary_chromaticity:
+  - 0.128
+  - 0.044
+gamma:
+  strategy: :linear
+  exponent: 1.0

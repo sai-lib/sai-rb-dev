@@ -1,0 +1,17 @@
+name: S-Gamut3.Cine
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :cinema
+red_primary_chromaticity:
+  - 0.766
+  - 0.275
+green_primary_chromaticity:
+  - 0.225
+  - 0.8
+blue_primary_chromaticity:
+  - 0.089
+  - -0.087
+gamma:
+  strategy: :linear
+  exponent: 2.2

@@ -1,0 +1,17 @@
+name: Wide Gamut RGB
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d50
+category: :design
+red_primary_chromaticity:
+  - 0.735
+  - 0.265
+green_primary_chromaticity:
+  - 0.115
+  - 0.826
+blue_primary_chromaticity:
+  - 0.157
+  - 0.018
+gamma:
+  strategy: :linear
+  exponent: 2.2

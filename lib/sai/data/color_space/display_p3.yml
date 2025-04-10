@@ -1,0 +1,22 @@
+name: Display P3
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :display
+red_primary_chromaticity:
+  - 0.68
+  - 0.32
+green_primary_chromaticity:
+  - 0.265
+  - 0.69
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_threshold: 0.0031308
+  encoded_threshold: 0.04045
+  linear_scale: 12.92
+  nonlinear_scale: 1.055
+  offset: 0.055

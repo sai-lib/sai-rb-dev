@@ -1,0 +1,22 @@
+name: Rec. 2020
+native_chromatic_adaptation_transform_id: :bradford
+native_observer_id: :cie1931_2_degree
+native_illuminant_id: :d65
+category: :broadcast
+red_primary_chromaticity:
+  - 0.708
+  - 0.292
+green_primary_chromaticity:
+  - 0.17
+  - 0.797
+blue_primary_chromaticity:
+  - 0.131
+  - 0.046
+gamma:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_threshold: 0.0181
+  encoded_threshold: 0.0812
+  linear_scale: 4.5
+  nonlinear_scale: 1.0993
+  offset: 0.0993

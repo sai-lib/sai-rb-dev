@@ -39,6 +39,8 @@ module Sai
     alias default_cat default_chromatic_adaptation_transform
     alias set_default_cat set_default_chromatic_adaptation_transform
 
+    default :color_space, Sai::Enum::ColorSpace::SRGB, Sai::Space, Sai::Enum::ColorSpace
+
     default :cone_fundamentals_transform, Sai::Enum::ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ,
             Sai::ChromaticAdaptationTransform, Sai::Enum::ChromaticAdaptationTransform
 

@@ -24,6 +24,7 @@ module Sai
   autoload :Configuration,                'sai/configuration'
   autoload :DataStore,                    'sai/data_store'
   autoload :DimensionMismatchError,       'sai/errors/dimension_mismatch_error'
+  autoload :EncodingSpecification,        'sai/encoding_specification'
   autoload :Enum,                         'sai/enum'
   autoload :Error,                        'sai/errors/error'
   autoload :Formula,                      'sai/formula'

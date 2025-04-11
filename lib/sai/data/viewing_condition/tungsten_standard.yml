@@ -1,0 +1,6 @@
+name: Tungsten Standard
+illuminant_id: :a
+surround_id: :average
+adapting_luminance: 60.0
+background_luminance: 12.0
+application: Incandescent lighting environment

@@ -1,0 +1,6 @@
+name: Dark Room Display
+illuminant_id: :d65
+surround_id: :dark
+adapting_luminance: 80.0
+background_luminance: 16.0
+application: Professional color grading

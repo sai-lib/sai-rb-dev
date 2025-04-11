@@ -40,6 +40,7 @@ module Sai
   autoload :Space,                        'sai/space'
   autoload :TypeError,                    'sai/errors/type_error'
   autoload :UnevenWavelengthError,        'sai/errors/uneven_wavelength_error'
+  autoload :ViewingCondition,             'sai/viewing_condition'
   autoload :WavelengthRange,              'sai/wavelength_range'
   autoload :ZeroDeterminantError,         'sai/errors/zero_determinant_error'
 

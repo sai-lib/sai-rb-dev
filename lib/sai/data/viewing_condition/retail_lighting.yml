@@ -1,0 +1,6 @@
+name: Retail Lighting
+illuminant_id: :fl11
+surround_id: :average
+adapting_luminance: 75.0
+background_luminance: 15.0
+application: Retail and commercial spaces

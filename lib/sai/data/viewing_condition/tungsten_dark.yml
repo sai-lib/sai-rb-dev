@@ -1,0 +1,6 @@
+name: Tungsten Dark
+illuminant_id: :a
+surround_id: :dark
+adapting_luminance: 60.0
+background_luminance: 12.0
+application: Museum with tungsten spots

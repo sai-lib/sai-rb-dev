@@ -1,0 +1,6 @@
+name: Dark Room Print
+illuminant_id: :d50
+surround_id: :dark
+adapting_luminance: 63.6
+background_luminance: 12.7
+application: Print inspection in darkroom

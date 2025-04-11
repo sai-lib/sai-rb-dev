@@ -1,0 +1,6 @@
+name: Cinema Environment
+illuminant_id: :d65
+surround_id: :dark
+adapting_luminance: 4.0
+background_luminance: 0.8
+application: Movie theater viewing conditions

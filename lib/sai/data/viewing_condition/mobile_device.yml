@@ -1,0 +1,6 @@
+name: Mobile Device
+illuminant_id: :d65
+surround_id: :dim
+adapting_luminance: 40.0
+background_luminance: 8.0
+application: Smartphones and tablets

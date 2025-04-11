@@ -1,0 +1,6 @@
+name: Standard Print
+illuminant_id: :d50
+surround_id: :average
+adapting_luminance: 63.6
+background_luminance: 12.7
+application: Print evaluation in office

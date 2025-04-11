@@ -1,0 +1,6 @@
+name: High-Brightness Display
+illuminant_id: :d65
+surround_id: :average
+adapting_luminance: 200.0
+background_luminance: 20.0
+application: HDR monitors and outdoor displays

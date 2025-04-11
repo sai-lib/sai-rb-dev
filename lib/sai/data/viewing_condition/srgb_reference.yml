@@ -1,0 +1,6 @@
+name: sRGB Reference
+illuminant_id: :d65
+surround_id: :average
+adapting_luminance: 100.0
+background_luminance: 20.0
+application: sRGB standard viewing conditions

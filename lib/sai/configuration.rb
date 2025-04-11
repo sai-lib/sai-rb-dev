@@ -54,6 +54,9 @@ module Sai
 
     default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer
 
+    default :viewing_condition, Sai::Enum::ViewingCondition::STANDARD_DISPLAY,
+            Sai::ViewingCondition, Sai::Enum::ViewingCondition
+
     def initialize
       self.class.defaults.each_pair { |attribute, value| instance_variable_set(:"@default_#{attribute}", value) }
       @default_cache_store ||= Sai::Enum::CacheStore::MEMORY

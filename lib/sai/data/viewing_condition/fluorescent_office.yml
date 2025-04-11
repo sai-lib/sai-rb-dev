@@ -1,0 +1,6 @@
+name: Fluorescent Office
+illuminant_id: :fl2
+surround_id: :average
+adapting_luminance: 70.0
+background_luminance: 14.0
+application: Typical office environment

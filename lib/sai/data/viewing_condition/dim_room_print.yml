@@ -1,0 +1,6 @@
+name: Dim Room Print
+illuminant_id: :d50
+surround_id: :dim
+adapting_luminance: 63.6
+background_luminance: 12.7
+application: Print viewing in subdued lighting

@@ -1,0 +1,6 @@
+name: Dim Room Display
+illuminant_id: :d65
+surround_id: :dim
+adapting_luminance: 80.0
+background_luminance: 16.0
+application: Home office environment

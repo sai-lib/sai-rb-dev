@@ -4,6 +4,7 @@ module Sai
   class Model
     module Core
       autoload :Comparison,    'sai/model/core/comparison'
+      autoload :Configuration, 'sai/model/core/configuration'
       autoload :Introspection, 'sai/model/core/introspection'
       autoload :Opacity,       'sai/model/core/opacity'
     end
@@ -23,12 +24,14 @@ module Sai
 
     include Channel::Management
     include Core::Comparison
+    include Core::Configuration
     include Core::Introspection
     include Core::Opacity
 
     def initialize(*channels, **options)
       initialize_opacity(**options)
       initialize_channels(*channels, **options)
+      initialize_configuration(**options)
     end
   end
 end

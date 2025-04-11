@@ -77,7 +77,7 @@ module Sai
         end
       end
 
-      Model::XYZ.new(x, y, z)
+      Model::XYZ.new(x, y, z, encoding_specification: self)
     end
 
     def rgb_to_xyz_matrix

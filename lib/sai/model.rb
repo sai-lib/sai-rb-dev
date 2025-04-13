@@ -5,6 +5,7 @@ module Sai
     module Core
       autoload :Comparison,    'sai/model/core/comparison'
       autoload :Configuration, 'sai/model/core/configuration'
+      autoload :Contrast,      'sai/model/core/contrast'
       autoload :Conversion,    'sai/model/core/conversion'
       autoload :Derivation,    'sai/model/core/derivation'
       autoload :Introspection, 'sai/model/core/introspection'
@@ -27,6 +28,7 @@ module Sai
     include Channel::Management
     include Core::Comparison
     include Core::Configuration
+    include Core::Contrast
     include Core::Conversion
     include Core::Derivation
     include Core::Introspection

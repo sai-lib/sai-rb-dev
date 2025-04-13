@@ -276,6 +276,50 @@ module Sai
         end
         alias scale_perceptual_lightness with_perceptual_lightness_scaled_by
 
+        def with_perceptual_luminance(value)
+          channels = Sai.cache.fetch(self.class, :with_luminance, *channel_cache_key, value) do
+            rgb = to_rgb(encoding_specification:)
+
+            current_luminance = luminance
+            return self if current_luminance.zero? || (current_luminance - value).abs < 0.001
+
+            scale_factor = value / current_luminance
+
+            nr, ng, nb = rgb.to_n_a.map { |channel| [channel * scale_factor, 1.0].min }
+            scaled_rgb = RGB.intermediate(nr, ng, nb, encoding_specification:)
+
+            if (scaled_rgb.luminance - value).abs > 0.01
+              oklch = to_oklch(encoding_specification:)
+              lightness_adjustment = value / current_luminance
+              new_lightness = [oklch.l * lightness_adjustment, 1.0].min
+
+              coerce(oklch.with_lightness(new_lightness)).to_n_a
+            end
+          end
+
+          coerce(channels)
+        end
+
+        def with_perceptual_luminance_contracted_by(amount)
+          with_perceptual_luminance(luminance * (1.0 - amount))
+        end
+        alias contract_perceptual_luminance with_perceptual_luminance_contracted_by
+
+        def with_perceptual_luminance_decremented_by(amount = 0.1)
+          with_perceptual_luminance([luminance - amount, 0.0].max)
+        end
+        alias decrement_perceptual_luminance with_perceptual_luminance_decremented_by
+
+        def with_perceptual_luminance_incremented_by(amount = 0.1)
+          with_perceptual_luminance([luminance + amount, 1.0].min)
+        end
+        alias increment_perceptual_luminance with_perceptual_luminance_incremented_by
+
+        def with_perceptual_luminance_scaled_by(amount)
+          with_perceptual_luminance(luminance * amount)
+        end
+        alias scale_perceptual_luminance with_perceptual_luminance_scaled_by
+
         def with_perceptual_saturation(value)
           oklch = to_oklch(encoding_specification:)
           new_saturation = [value, 1.0].min
@@ -404,6 +448,7 @@ module Sai
             @green
             @hue
             @lightness
+            @luminance
             @perceptual_brightness
             @perceptual_saturation
             @magenta

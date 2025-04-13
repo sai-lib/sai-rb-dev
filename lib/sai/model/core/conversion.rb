@@ -95,6 +95,14 @@ module Sai
           to_rgb(...).to_cmyk(...)
         end
 
+        def to_grayscale(**options)
+          r, g, b = to_rgb(encoding_specification:, **options).to_n_a
+          bt709 = Formula::Contrast::BT709
+
+          gray = (bt709::RED_COEFFICIENT * r) + (bt709::GREEN_COEFFICIENT * g) + (bt709::BLUE_COEFFICIENT * b)
+          coerce(RGB.intermediate(gray, gray, gray, encoding_specification:, **options), **options)
+        end
+
         def to_hsl(...)
           to_rgb(...).to_hsl(...)
         end

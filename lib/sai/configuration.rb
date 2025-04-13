@@ -44,6 +44,9 @@ module Sai
     default :cone_fundamentals_transform, Sai::Enum::ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ,
             Sai::ChromaticAdaptationTransform, Sai::Enum::ChromaticAdaptationTransform
 
+    default :contrast_formula, Sai::Enum::Formula::Contrast::APCA,
+            ->(f) { f.name.start_with?(Sai::Formula::Contrast.name) }, Sai::Enum::Formula::Contrast
+
     default :correlated_color_temperature_formula, Sai::Enum::Formula::CorrelatedColorTemperature::OHNO,
             ->(f) { f.name.start_with?(Sai::Formula::CorrelatedColorTemperature.name) },
             Sai::Enum::Formula::CorrelatedColorTemperature

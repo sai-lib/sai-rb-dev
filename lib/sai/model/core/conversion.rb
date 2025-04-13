@@ -142,7 +142,10 @@ module Sai
           new_encoding_specification = encoding_specification(**options)
           return self if new_encoding_specification == default_encoding_specification
 
-          coerce(to_xyz(encoding_specification: default_encoding_specification).to_xyz(**options), **options)
+          color = coerce(to_xyz(encoding_specification: default_encoding_specification).to_xyz(**options), **options)
+          strategy = gamut_mapping_strategy(**options)
+
+          new_encoding_specification.map_to_gamut(color, strategy:)
         end
 
         private

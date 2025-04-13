@@ -50,6 +50,10 @@ module Sai
     alias default_cct_formula default_correlated_color_temperature_formula
     alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+    default :gamut_mapping_strategy, Sai::Enum::Gamut::MappingStrategy::COMPRESS,
+            ->(symbol) { Sai::Enum::Gamut::MappingStrategy.resolve_all.include?(symbol) },
+            Sai::Enum::Gamut::MappingStrategy
+
     default :illuminant, Sai::Enum::Illuminant::D65, Sai::Illuminant, Sai::Enum::Illuminant
 
     default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer

@@ -80,6 +80,118 @@ module Sai
       Model::XYZ.new(x, y, z, encoding_specification: self)
     end
 
+    def in_gamut?(color)
+      raise TypeError, "`color` is invalid. Expected `Sai::Model`, got: #{color.inspect}" unless color.is_a?(Model)
+
+      Sai.cache.fetch(EncodingSpecification, :in_gamut?, color.symbol, *color.channel_cache_key, hash) do
+        xyz = color.to_xyz(encoding_specification: self)
+
+        xyz_vector = xyz_to_rgb_matrix.class.column_vector(xyz)
+        rgb_vector = xyz_to_rgb_matrix * xyz_vector
+        linear_rgb_values = rgb_vector.to_a.flatten
+
+        rgb_values = linear_rgb_values.map { |v| color_space.gamma.from_linear(v) }
+
+        rgb_values.all? { |v| v.between?(0.0, 1.0) }
+      end
+    end
+
+    def map_to_gamut(color, strategy: Sai.config.default_gamut_mapping_strategy)
+      raise TypeError, "`color` is invalid. Expected `Sai::Model`, got: #{color.inspect}" unless color.is_a?(Model)
+
+      x, y, z = Sai.cache.fetch(EncodingSpecification, :map_to_gamut, color.symbol, *color.channel_cache_key, hash) do
+        xyz = color.to_xyz(encoding_specification: self)
+
+        if in_gamut?(color)
+          xyz.to_n_a
+        else
+          case strategy
+          when Sai::Enum::Gamut::MappingStrategy::COMPRESS
+            lab = xyz.to_lab(encoding_specification: self)
+            l, a, b = lab.to_n_a
+
+            original_chroma = Math.sqrt((a * a) + (b * b))
+
+            chroma_scale = 1.0
+            min_scale = 0.0
+            max_scale = 1.0
+
+            8.times do
+              test_chroma = original_chroma * chroma_scale
+
+              if original_chroma.positive?
+                chroma_ratio = test_chroma / original_chroma
+                test_a = a * chroma_ratio
+                test_b = b * chroma_ratio
+              else
+                test_a = 0
+                test_b = 0
+              end
+
+              test_lab = Model::Lab.new(l, test_a, test_b, encoding_specification: self)
+
+              in_gamut = in_gamut?(test_lab)
+
+              if in_gamut
+                min_scale = chroma_scale
+                chroma_scale = (chroma_scale + max_scale) / 2
+              else
+                max_scale = chroma_scale
+                chroma_scale = (chroma_scale + min_scale) / 2
+              end
+            end
+
+            final_chroma = original_chroma * min_scale
+
+            if original_chroma.positive?
+              final_ratio = final_chroma / original_chroma
+              final_a = a * final_ratio
+              final_b = b * final_ratio
+            else
+              final_a = 0
+              final_b = 0
+            end
+
+            final_lab = Model::Lab.new(l, final_a, final_b, encoding_specification: self)
+            final_xyz = final_lab.to_xyz(encoding_specification: self)
+
+            unless in_gamut?(final_lab)
+              final_xyz = map_to_gamut(
+                Model::XYZ.new(*final_xyz.to_n_a, encoding_specification: self),
+                strategy: Sai::Enum::Gamut::MappingStrategy::CLIP,
+              )
+            end
+
+            final_xyz.to_n_a
+          when Sai::Enum::Gamut::MappingStrategy::SCALE, Sai::Enum::Gamut::MappingStrategy::CLIP
+            xyz_vector = xyz_to_rgb_matrix.class.column_vector(xyz)
+            rgb_vector = xyz_to_rgb_matrix * xyz_vector
+            linear_rgb_values = rgb_vector.to_a.flatten
+
+            rgb_values = linear_rgb_values.map { |v| color_space.gamma.from_linear(v) }
+
+            linear_rgb = case strategy
+                         when Sai::Enum::Gamut::MappingStrategy::SCALE
+                           max_value = rgb_values.map(&:abs).max
+                           scale_factor = max_value > 1.0 ? 1.0 / max_value : 1.0 # rubocop:disable Metrics/BlockNesting
+                           rgb_values.map { |v| v * scale_factor }
+                         when Sai::Enum::Gamut::MappingStrategy::CLIP
+                           rgb_values.map { |v| v.clamp(0.0, 1.0) }
+                         end
+
+            rgb_vector = rgb_to_xyz_matrix.class.column_vector(linear_rgb.map { |v| color_space.gamma.to_linear(v) })
+            xyz_vector = rgb_to_xyz_matrix * rgb_vector
+            xyz_vector.to_a.flatten
+          else
+            raise ArgumentError, '`:strategy` is invalid. Expected one of ' \
+                                 "#{Sai::Enum::Gamut::MappingStrategy.resolve_all.join(', ')}, got: #{strategy.inspect}"
+          end
+        end
+      end
+
+      color.coerce(Model::XYZ.new(x, y, z, encoding_specification: self), encoding_specification: self)
+    end
+
     def rgb_to_xyz_matrix
       rows = Sai.cache.fetch(EncodingSpecification, :rgb_to_xyz_matrix, hash) do
         r_xyz, g_xyz, b_xyz = color_space.primaries.map { |primary| chromaticity_to_xyz(primary) }

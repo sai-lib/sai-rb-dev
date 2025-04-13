@@ -29,12 +29,23 @@ module Sai
             build_encoding_specification_from_options(**@config) || EncodingSpecification.new
         end
 
+        def gamut_mapping_strategy(**options)
+          options.fetch(
+            :gamut_mapping_strategy,
+            @config.fetch(
+              :gamut_mapping_strategy,
+              Sai.config.default_gamut_mapping_strategy,
+            ),
+          )
+        end
+
         def initialize_configuration(**options)
           @config = options.slice(
             :cat,
             :chromatic_adaptation_transform,
             :color_space,
             :encoding_specification,
+            :gamut_mapping_strategy,
             :illuminant,
             :observer,
             :viewing_condition,

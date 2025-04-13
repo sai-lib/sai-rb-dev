@@ -36,6 +36,32 @@ module Sai
 
         value(:robertson) { Sai::Formula::CorrelatedColorTemperature::Robertson }
       end
+
+      module Distance
+        extend Enum
+
+        module Application
+          extend Enum
+
+          value(:graphic_arts) { :graphic_arts }
+
+          value(:textile) { :textile }
+        end
+
+        value(:cie76) { Sai::Formula::Distance::CIE76 }
+
+        value(:cie94) { Sai::Formula::Distance::CIE94 }
+
+        value(:cie_cmc) { Sai::Formula::Distance::CIECMC }
+
+        value(:cie_de2000) { Sai::Formula::Distance::CIEDE2000 }
+
+        value(:delta_e) { Sai::Formula::Distance::DeltaE }
+
+        value(:euclidean) { Sai::Formula::Distance::Euclidean }
+
+        value(:manhattan) { Sai::Formula::Distance::Manhattan }
+      end
     end
   end
 end

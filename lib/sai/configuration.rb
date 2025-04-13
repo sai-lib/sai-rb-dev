@@ -53,6 +53,13 @@ module Sai
     alias default_cct_formula default_correlated_color_temperature_formula
     alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+    default :distance_application, Sai::Enum::Formula::Distance::Application::GRAPHIC_ARTS,
+            ->(symbol) { Sai::Enum::Formula::Distance::Application.resolve_all.include?(symbol) },
+            Sai::Enum::Formula::Distance::Application
+
+    default :distance_formula, Sai::Enum::Formula::Distance::CIE_DE2000,
+            ->(f) { f.name.start_with?(Sai::Formula::Distance.name) }, Sai::Enum::Formula::Distance
+
     default :gamut_mapping_strategy, Sai::Enum::Gamut::MappingStrategy::COMPRESS,
             ->(symbol) { Sai::Enum::Gamut::MappingStrategy.resolve_all.include?(symbol) },
             Sai::Enum::Gamut::MappingStrategy

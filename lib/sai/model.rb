@@ -6,6 +6,7 @@ module Sai
       autoload :Comparison,    'sai/model/core/comparison'
       autoload :Configuration, 'sai/model/core/configuration'
       autoload :Conversion,    'sai/model/core/conversion'
+      autoload :Derivation,    'sai/model/core/derivation'
       autoload :Introspection, 'sai/model/core/introspection'
       autoload :Opacity,       'sai/model/core/opacity'
     end
@@ -27,6 +28,7 @@ module Sai
     include Core::Comparison
     include Core::Configuration
     include Core::Conversion
+    include Core::Derivation
     include Core::Introspection
     include Core::Opacity
 

@@ -15,6 +15,16 @@ module Sai
             raise TypeError, "`:formula` is invalid. Expected `Sai::Formula::Distance`, got: #{formula.inspect}"
           end
 
+          others = others.flat_map do |color_or_palette|
+            if color_or_palette.is_a?(Palette)
+              color_or_palette.colors.map do |color|
+                color.public_send(:"as_#{symbol}", encoding_specification:, **options)
+              end
+            else
+              coerce(color_or_palette, **options)
+            end
+          end
+
           cache_key = [
             self.class,
             :closest_match,

@@ -390,6 +390,28 @@ module Sai
           coerce(to_cmyk(encoding_specification:).with_yellow_scaled_by(amount))
         end
         alias scale_yellow with_yellow_scaled_by
+
+        private
+
+        def initialize_copy(_source)
+          super
+          %i[
+            @blue
+            @brightness
+            @chroma
+            @correlated_color_temperature
+            @cyan
+            @green
+            @hue
+            @lightness
+            @perceptual_brightness
+            @perceptual_saturation
+            @magenta
+            @red
+            @saturation
+            @yellow
+          ].each { |ivar| instance_variable_set(ivar, nil) }
+        end
       end
     end
   end

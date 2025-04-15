@@ -13,6 +13,12 @@ module Sai
 
       cache_channels_with_high_precision
 
+      def to_css
+        value_string = "#{lightness.round}% #{a.round} #{b.round}"
+        opacity_string = opacity < PERCENTAGE_RANGE.end ? " / #{(opacity / PERCENTAGE_RANGE.end)}" : ''
+        "lab(#{value_string}#{opacity_string});"
+      end
+
       def to_lab(**options)
         with_encoding_specification(**options)
       end

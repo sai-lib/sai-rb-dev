@@ -43,6 +43,12 @@ module Sai
         end
       end
 
+      def to_css
+        value_string = "#{red} #{green} #{blue}"
+        opacity_string = opacity < PERCENTAGE_RANGE.end ? " / #{(opacity / PERCENTAGE_RANGE.end)}" : ''
+        "rgb(#{value_string}#{opacity_string});"
+      end
+
       def to_hsl(**options)
         convert_to(HSL, **options) do
           nr, ng, nb = normalized = to_n_a

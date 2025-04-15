@@ -9,6 +9,12 @@ module Sai
       channel :saturation, :s, :percentage
       channel :lightness, :l, :percentage
 
+      def to_css
+        value_string = "#{hue} #{saturation}% #{lightness}%"
+        opacity_string = opacity < PERCENTAGE_RANGE.end ? " / #{(opacity / PERCENTAGE_RANGE.end)}" : ''
+        "hsl(#{value_string}#{opacity_string});"
+      end
+
       def to_hsl(**options)
         with_encoding_specification(**options)
       end

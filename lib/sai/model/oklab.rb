@@ -15,6 +15,12 @@ module Sai
 
       cache_channels_with_high_precision
 
+      def to_css
+        value_string = "#{lightness.round}% #{a.round(2)} #{b.round(2)}"
+        opacity_string = opacity < PERCENTAGE_RANGE.end ? " / #{(opacity / PERCENTAGE_RANGE.end)}" : ''
+        "oklab(#{value_string}#{opacity_string});"
+      end
+
       def to_lms(**options)
         convert_to(LMS, **options) do
           matrix = NON_LINEAR_LMS_MATRIX.inverse

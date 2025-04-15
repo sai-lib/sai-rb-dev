@@ -7,6 +7,12 @@ module Sai
       channel :chroma, :c, :linear, display_precision: 2, differential_step: 0.5
       channel :hue, :h, :hue_angle
 
+      def to_css
+        value_string = "#{lightness}% #{chroma.round(2)} #{hue.round(2)}"
+        opacity_string = opacity < PERCENTAGE_RANGE.end ? " / #{(opacity / PERCENTAGE_RANGE.end)}" : ''
+        "lch(#{value_string}#{opacity_string});"
+      end
+
       def to_lab(**options)
         convert_to(Lab, **options) do
           nl, nc, nh = to_n_a

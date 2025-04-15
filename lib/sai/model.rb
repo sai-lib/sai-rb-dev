@@ -9,6 +9,7 @@ module Sai
       autoload :Conversion,    'sai/model/core/conversion'
       autoload :Derivation,    'sai/model/core/derivation'
       autoload :Introspection, 'sai/model/core/introspection'
+      autoload :Mixing,        'sai/model/core/mixing'
       autoload :Opacity,       'sai/model/core/opacity'
     end
 
@@ -32,6 +33,7 @@ module Sai
     include Core::Conversion
     include Core::Derivation
     include Core::Introspection
+    include Core::Mixing
     include Core::Opacity
 
     def initialize(*channels, **options)

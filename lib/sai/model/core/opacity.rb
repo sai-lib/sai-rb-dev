@@ -35,18 +35,31 @@ module Sai
         alias decrement_opacity         with_opacity_decremented_by
         alias with_alpha_decremented_by with_opacity_decremented_by
 
-        def with_opacity_flattened
-          return self unless opacity < PERCENTAGE_RANGE.end
+        def with_opacity_flattened(background = nil)
+          background = coerce(background, encoding_specification:) unless background.nil?
 
-          new_channels = self.class.channels.symbols.map do |symbol|
-            original = instance_variable_get(:"@#{symbol}")
-            original * opacity
+          r, g, b = Sai.cache.fetch(self.class, *channel_cache_key, *background&.channel_cache_key) do
+            return self unless opacity < PERCENTAGE_RANGE.end
+
+            background ||= RGB.new(0, 0, 0, encoding_specification:)
+            background = coerce(background)
+
+            weight = (PERCENTAGE_RANGE.end - opacity) / PERCENTAGE_RANGE.end
+
+            rgb1 = to_rgb(encoding_specification:)
+            rgb2 = background.to_rgb(encoding_specification:)
+
+            r = rgb1.r + ((rgb2.r - rgb1.r) * weight)
+            g = rgb1.g + ((rgb2.g - rgb1.g) * weight)
+            b = rgb1.b + ((rgb2.b - rgb1.b) * weight)
+
+            [r, g, b]
           end
 
-          self.class.new(*new_channels)
+          coerce(RGB.intermediate(r, g, b, encoding_specification: encoding_specification))
         end
-        alias flatten_alpha        with_opacity_flattened
-        alias flatten_opacity      with_opacity_flattened
+        alias flatten_alpha with_opacity_flattened
+        alias flatten_opacity with_opacity_flattened
         alias with_alpha_flattened with_opacity_flattened
 
         def with_opacity_incremented_by(amount)

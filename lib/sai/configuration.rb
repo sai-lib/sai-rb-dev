@@ -64,6 +64,9 @@ module Sai
             ->(symbol) { Sai::Enum::Gamut::MappingStrategy.resolve_all.include?(symbol) },
             Sai::Enum::Gamut::MappingStrategy
 
+    default :mix_strategy, Sai::Enum::MixStrategy::GAMUT_AWARE,
+            ->(symbol) { Sai::Enum::MixStrategy.resolve_all.include?(symbol) }, Sai::Enum::MixStrategy
+
     default :illuminant, Sai::Enum::Illuminant::D65, Sai::Illuminant, Sai::Enum::Illuminant
 
     default :observer, Sai::Enum::Observer::CIE1931, Sai::Observer, Sai::Enum::Observer

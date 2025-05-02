@@ -17,6 +17,7 @@ module Sai
   autoload :ChromaticAdaptationTransform, 'sai/chromatic_adaptation_transform'
   autoload :Chromaticity,                 'sai/chromaticity'
   autoload :Core,                         'sai/core'
+  autoload :Formula,                      'sai/formula'
   autoload :Model,                        'sai/model'
   autoload :Observer,                     'sai/observer'
   autoload :Spectral,                     'sai/spectral'

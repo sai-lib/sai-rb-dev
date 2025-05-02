@@ -53,6 +53,10 @@ module Sai
 
       default(:cone_transform) { ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ }
 
+      default(:correlated_color_temperature_formula) { Formula::CorrelatedColorTemperature::Ohno }
+      alias default_cct_formula default_correlated_color_temperature_formula
+      alias set_default_cct_formula set_default_correlated_color_temperature_formula
+
       default(:observer) { Observer::CIE_1931 }
 
       validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
@@ -69,6 +73,11 @@ module Sai
 
       validates :cone_transform, 'must be a `Sai::ChromaticAdaptationTransform`' do |cat|
         cat.is_a?(ChromaticAdaptationTransform)
+      end
+
+      validates :correlated_color_temperature_formula,
+                'must be a `Sai::Formula::CorrelatedColorTemperature`' do |formula|
+        formula.is_a?(Formula::CorrelatedColorTemperature)
       end
 
       validates :observer, 'must be a `Sai::Observer`' do |observer|

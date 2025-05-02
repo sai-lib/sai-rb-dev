@@ -2,6 +2,7 @@
 
 module Sai
   module Core
+    autoload :Cache,            'sai/core/cache'
     autoload :Concurrency,      'sai/core/concurrency'
     autoload :Configuration,    'sai/core/configuration'
     autoload :DefferedConstant, 'sai/core/deffered_constant'

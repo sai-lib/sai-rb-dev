@@ -16,6 +16,13 @@ module Sai
   extend Core::Concurrency
 
   class << self
+    def cache
+      concurrent_instance_variable_fetch(
+        :@cache,
+        config.default_cache_store.new(**config.default_cache_options),
+      )
+    end
+
     def config
       concurrent_instance_variable_fetch(:@config, Core::Configuration.new)
     end

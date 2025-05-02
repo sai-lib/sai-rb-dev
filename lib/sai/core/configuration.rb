@@ -43,10 +43,36 @@ module Sai
         end
       end
 
+      default(:cache_store) { Cache::LRUStore }
+
+      default(:cache_options, { max_size: 2_048_000 })
+
+      validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
+        store < Cache::Store
+      end
+
+      validates :cache_options, 'must be a `Hash[Symbol, Object]`' do |options|
+        options.is_a?(Hash) && options.keys.all?(Symbol)
+      end
+
       def initialize
         self.class.defaults.each_pair do |attribute, config|
           instance_variable_set(:"@default_#{attribute}", config[:value])
         end
+      end
+
+      def disable_caching
+        set_default_cache_store(Cache::NullStore)
+        set_default_cache_options({})
+
+        Sai.send(:mutex).synchronize { Sai.instance_variable_set(:@cache, nil) }
+      end
+
+      def enable_caching(store: Cache::LRUStore, **options)
+        set_default_cache_store(store)
+        set_default_cache_options(options)
+
+        Sai.send(:mutex).synchronize { Sai.instance_variable_set(:@cache, nil) }
       end
     end
   end

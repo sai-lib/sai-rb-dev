@@ -9,10 +9,13 @@ module Sai
 
   autoload :Core, 'sai/core'
 
-  autoload :ConfigurationError,   'sai/errors/configuration_error'
-  autoload :Error,                'sai/errors/error'
-  autoload :IdentityError,        'sai/errors/identity_error'
-  autoload :InvalidDataFileError, 'sai/errors/invalid_data_file_error'
+  autoload :ConfigurationError,     'sai/errors/configuration_error'
+  autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'
+  autoload :Error,                  'sai/errors/error'
+  autoload :IdentityError,          'sai/errors/identity_error'
+  autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
+  autoload :MatrixError,            'sai/errors/matrix_error'
+  autoload :ZeroDeterminantError,   'sai/errors/zero_determinant_error'
 
   extend Core::Concurrency
 

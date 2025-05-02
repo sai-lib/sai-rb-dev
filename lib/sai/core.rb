@@ -10,5 +10,6 @@ module Sai
     autoload :Identity,          'sai/core/identity'
     autoload :Inflection,        'sai/core/inflection'
     autoload :ManagedAttributes, 'sai/core/managed_attributes'
+    autoload :Matrix,            'sai/core/matrix'
   end
 end

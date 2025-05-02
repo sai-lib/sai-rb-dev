@@ -53,6 +53,8 @@ module Sai
 
       default(:cone_transform) { ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ }
 
+      default(:observer) { Observer::CIE_1931 }
+
       validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
         store < Cache::Store
       end
@@ -67,6 +69,10 @@ module Sai
 
       validates :cone_transform, 'must be a `Sai::ChromaticAdaptationTransform`' do |cat|
         cat.is_a?(ChromaticAdaptationTransform)
+      end
+
+      validates :observer, 'must be a `Sai::Observer`' do |observer|
+        observer.is_a?(Observer)
       end
 
       def initialize

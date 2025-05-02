@@ -18,6 +18,7 @@ module Sai
   autoload :Chromaticity,                 'sai/chromaticity'
   autoload :Core,                         'sai/core'
   autoload :Model,                        'sai/model'
+  autoload :Observer,                     'sai/observer'
   autoload :Spectral,                     'sai/spectral'
 
   autoload :ConfigurationError,     'sai/errors/configuration_error'

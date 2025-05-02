@@ -47,12 +47,26 @@ module Sai
 
       default(:cache_options, { max_size: 2_048_000 })
 
+      default(:chromatic_adaptation_transform) { ChromaticAdaptationTransform::BRADFORD }
+      alias default_cat default_chromatic_adaptation_transform
+      alias set_default_cat set_default_chromatic_adaptation_transform
+
+      default(:cone_transform) { ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ }
+
       validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
         store < Cache::Store
       end
 
       validates :cache_options, 'must be a `Hash[Symbol, Object]`' do |options|
         options.is_a?(Hash) && options.keys.all?(Symbol)
+      end
+
+      validates :chromatic_adaptation_transform, 'must be a `Sai::ChromaticAdaptationTransform`' do |cat|
+        cat.is_a?(ChromaticAdaptationTransform)
+      end
+
+      validates :cone_transform, 'must be a `Sai::ChromaticAdaptationTransform`' do |cat|
+        cat.is_a?(ChromaticAdaptationTransform)
       end
 
       def initialize

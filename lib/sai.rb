@@ -13,10 +13,12 @@ module Sai
   PERCENTAGE_RANGE = 0.0..100.0
   private_constant :PERCENTAGE_RANGE
 
-  autoload :Chromaticity, 'sai/chromaticity'
-  autoload :Core,         'sai/core'
-  autoload :Model,        'sai/model'
-  autoload :Spectral,     'sai/spectral'
+  autoload :CAT,                          'sai/chromatic_adaptation_transform'
+  autoload :ChromaticAdaptationTransform, 'sai/chromatic_adaptation_transform'
+  autoload :Chromaticity,                 'sai/chromaticity'
+  autoload :Core,                         'sai/core'
+  autoload :Model,                        'sai/model'
+  autoload :Spectral,                     'sai/spectral'
 
   autoload :ConfigurationError,     'sai/errors/configuration_error'
   autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'

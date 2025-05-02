@@ -2,7 +2,8 @@
 
 module Sai
   module Core
-    autoload :Concurrency, 'sai/core/concurrency'
-    autoload :Inflection, 'sai/core/inflection'
+    autoload :Concurrency,      'sai/core/concurrency'
+    autoload :DefferedConstant, 'sai/core/deffered_constant'
+    autoload :Inflection,       'sai/core/inflection'
   end
 end

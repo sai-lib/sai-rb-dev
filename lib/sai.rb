@@ -27,6 +27,7 @@ module Sai
   autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
   autoload :MatrixError,            'sai/errors/matrix_error'
+  autoload :UnevenWavelengthError,  'sai/errors/uneven_wavelength_error'
   autoload :ZeroDeterminantError,   'sai/errors/zero_determinant_error'
 
   extend Core::Concurrency

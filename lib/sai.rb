@@ -9,9 +9,10 @@ module Sai
 
   autoload :Core, 'sai/core'
 
-  autoload :ConfigurationError, 'sai/errors/configuration_error'
-  autoload :Error,              'sai/errors/error'
-  autoload :IdentityError,      'sai/errors/identity_error'
+  autoload :ConfigurationError,   'sai/errors/configuration_error'
+  autoload :Error,                'sai/errors/error'
+  autoload :IdentityError,        'sai/errors/identity_error'
+  autoload :InvalidDataFileError, 'sai/errors/invalid_data_file_error'
 
   extend Core::Concurrency
 
@@ -29,6 +30,10 @@ module Sai
 
     def configure(&block)
       block&.arity&.zero? ? config.instance_exec(&block) : (yield(config) if block)
+    end
+
+    def data_store
+      concurrent_instance_variable_fetch(:@data_store, Core::DataStore.new)
     end
   end
 end

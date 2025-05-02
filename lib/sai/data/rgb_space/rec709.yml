@@ -1,0 +1,21 @@
+name: Rec709
+identifier: :rec709_rgb
+category: :broadcast
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.64
+  - 0.33
+green_primary_chromaticity:
+  - 0.3
+  - 0.6
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma_settings:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_cutoff: 0.018
+  linear_slope: 4.5
+  offset: 0.099
+  power_scale: 1.099
+  threshold: 0.081

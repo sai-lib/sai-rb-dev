@@ -1,0 +1,16 @@
+name: Apple
+identifier: :apple_rgb
+category: :display
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.625
+  - 0.34
+green_primary_chromaticity:
+  - 0.28
+  - 0.595
+blue_primary_chromaticity:
+  - 0.155
+  - 0.07
+gamma_settings:
+  strategy: :linear
+  exponent: 1.8

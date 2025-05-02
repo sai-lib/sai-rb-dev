@@ -1,0 +1,16 @@
+name: ECI
+identifier: :eci_rgb
+category: :printing
+native_illuminant: :D50
+red_primary_chromaticity:
+  - 0.67
+  - 0.33
+green_primary_chromaticity:
+  - 0.21
+  - 0.71
+blue_primary_chromaticity:
+  - 0.14
+  - 0.08
+gamma_settings:
+  strategy: :linear
+  exponent: 1.8

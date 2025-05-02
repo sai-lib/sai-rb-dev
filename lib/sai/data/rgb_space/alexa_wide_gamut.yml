@@ -1,0 +1,21 @@
+name: AlexaWideGamut
+identifier: :alexa_wide_gamut_rgb
+category: :cinema
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.684
+  - 0.313
+green_primary_chromaticity:
+  - 0.221
+  - 0.848
+blue_primary_chromaticity:
+  - 0.0861
+  - -0.102
+gamma_settings:
+  strategy: :transfer_function
+  exponent: 1.0
+  linear_cutoff: 0.01
+  linear_slope: 5.555556
+  offset: 0.0
+  power_scale: 1.0
+  threshold: 0.005

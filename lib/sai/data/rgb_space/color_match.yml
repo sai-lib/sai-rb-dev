@@ -1,0 +1,16 @@
+name: ColorMatch
+identifier: :color_match_rgb
+category: :display
+native_illuminant: :D50
+red_primary_chromaticity:
+  - 0.63
+  - 0.34
+green_primary_chromaticity:
+  - 0.295
+  - 0.605
+blue_primary_chromaticity:
+  - 0.15
+  - 0.075
+gamma_settings:
+  strategy: :linear
+  exponent: 1.8

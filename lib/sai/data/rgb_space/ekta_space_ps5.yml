@@ -1,0 +1,16 @@
+name: EktaSpacePS5
+identifier: :ekta_space_ps5_rgb
+category: :design
+native_illuminant: :D50
+red_primary_chromaticity:
+  - 0.695
+  - 0.305
+green_primary_chromaticity:
+  - 0.26
+  - 0.7
+blue_primary_chromaticity:
+  - 0.11
+  - 0.005
+gamma_settings:
+  strategy: :linear
+  exponent: 2.2

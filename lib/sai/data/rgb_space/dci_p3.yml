@@ -1,0 +1,16 @@
+name: DCIP3
+identifier: :dci_p3_rgb
+category: :cinema
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.68
+  - 0.32
+green_primary_chromaticity:
+  - 0.265
+  - 0.69
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma_settings:
+  strategy: :linear
+  exponent: 2.6

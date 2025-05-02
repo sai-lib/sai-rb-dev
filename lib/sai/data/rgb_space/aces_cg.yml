@@ -1,0 +1,16 @@
+name: AcesCG
+identifier: :aces_cg_rgb
+category: :cinema
+native_illuminant: :D60
+red_primary_chromaticity:
+  - 0.713
+  - 0.293
+green_primary_chromaticity:
+  - 0.165
+  - 0.83
+blue_primary_chromaticity:
+  - 0.128
+  - 0.044
+gamma_settings:
+  strategy: :linear
+  exponent: 1.0

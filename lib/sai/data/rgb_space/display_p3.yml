@@ -1,0 +1,21 @@
+name: DisplayP3
+identifier: :display_p3_rgb
+category: :display
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.68
+  - 0.32
+green_primary_chromaticity:
+  - 0.265
+  - 0.69
+blue_primary_chromaticity:
+  - 0.15
+  - 0.06
+gamma_settings:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_cutoff: 0.0031308
+  linear_slope: 12.92
+  offset: 0.055
+  power_scale: 1.055
+  threshold: 0.04045

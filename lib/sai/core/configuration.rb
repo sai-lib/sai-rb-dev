@@ -57,9 +57,13 @@ module Sai
       alias default_cct_formula default_correlated_color_temperature_formula
       alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+      default(:gamut_mapping_strategy) { Sai::Space::Gamut::Mapping::PERCEPTUAL }
+
       default(:illuminant) { Illuminant::D65 }
 
       default(:observer) { Observer::CIE_1931 }
+
+      default(:rgb_space) { Space::Encoded::RGB::Standard }
 
       validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
         store < Cache::Store
@@ -82,12 +86,21 @@ module Sai
         formula.is_a?(Formula::CorrelatedColorTemperature)
       end
 
+      validates :gamut_mapping_strategy,
+                "must be one of #{Sai::Space::Gamut::Mapping::ALL.join(', ')}" do |strategy|
+        Sai::Space::Gamut::Mapping::ALL.include?(strategy)
+      end
+
       validates :illuminant, 'must be a `Sai::Illuminant`' do |illuminant|
         illuminant.is_a?(Illuminant)
       end
 
       validates :observer, 'must be a `Sai::Observer`' do |observer|
         observer.is_a?(Observer)
+      end
+
+      validates :rgb_space, 'must be a subclass of `Sai::Space::Encoded::RGB`' do |space|
+        space < Space::Encoded::RGB
       end
 
       def initialize

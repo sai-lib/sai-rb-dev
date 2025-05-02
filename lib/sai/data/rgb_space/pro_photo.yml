@@ -1,0 +1,21 @@
+name: ProPhoto
+identifier: :pro_photo_rgb
+category: :photography
+native_illuminant: :D50
+red_primary_chromaticity:
+  - 0.7347
+  - 0.2653
+green_primary_chromaticity:
+  - 0.1596
+  - 0.8404
+blue_primary_chromaticity:
+  - 0.0366
+  - 0.0001
+gamma_settings:
+  strategy: :transfer_function
+  exponent: 1.8
+  linear_cutoff: 0.001953
+  linear_slope: 16.0
+  offset: 0.0
+  power_scale: 1.0
+  threshold: 0.025

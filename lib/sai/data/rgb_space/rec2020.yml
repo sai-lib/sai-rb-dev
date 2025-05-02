@@ -1,0 +1,21 @@
+name: Rec2020
+identifier: :rec2020_rgb
+category: :broadcast
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.708
+  - 0.292
+green_primary_chromaticity:
+  - 0.17
+  - 0.797
+blue_primary_chromaticity:
+  - 0.131
+  - 0.046
+gamma_settings:
+  strategy: :transfer_function
+  exponent: 2.4
+  linear_cutoff: 0.0181
+  linear_slope: 4.5
+  offset: 0.0993
+  power_scale: 1.0993
+  threshold: 0.0812

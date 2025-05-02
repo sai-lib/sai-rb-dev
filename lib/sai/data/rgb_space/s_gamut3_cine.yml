@@ -1,0 +1,16 @@
+name: SGamut3Cine
+identifier: :s_gamut3_cine_rgb
+category: :cinema
+native_illuminant: :D65
+red_primary_chromaticity:
+  - 0.766
+  - 0.275
+green_primary_chromaticity:
+  - 0.225
+  - 0.8
+blue_primary_chromaticity:
+  - 0.089
+  - -0.087
+gamma_settings:
+  strategy: :linear
+  exponent: 2.2

@@ -21,6 +21,7 @@ module Sai
   autoload :Model,                        'sai/model'
   autoload :Illuminant,                   'sai/illuminant'
   autoload :Observer,                     'sai/observer'
+  autoload :Space,                        'sai/space'
   autoload :Spectral,                     'sai/spectral'
   autoload :Standard,                     'sai/standard'
 
@@ -28,6 +29,7 @@ module Sai
   autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'
   autoload :Error,                  'sai/errors/error'
   autoload :IdentityError,          'sai/errors/identity_error'
+  autoload :InstantiationError,     'sai/errors/instantiation_error'
   autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
   autoload :MatrixError,            'sai/errors/matrix_error'

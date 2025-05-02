@@ -1,0 +1,16 @@
+name: Beta
+identifier: :beta_rgb
+category: :design
+native_illuminant: :D50
+red_primary_chromaticity:
+  - 0.6888
+  - 0.3112
+green_primary_chromaticity:
+  - 0.1986
+  - 0.7551
+blue_primary_chromaticity:
+  - 0.1265
+  - 0.0352
+gamma_settings:
+  strategy: :linear
+  exponent: 2.2

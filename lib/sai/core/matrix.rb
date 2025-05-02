@@ -330,6 +330,7 @@ module Sai
         case object
         when Array          then object.dup
         when Matrix, Vector then object.to_a.dup
+        when Model          then object.components.to_normalized.dup
         else
           begin
             converted = object.respond_to?(:to_a) ? object.to_a : object.to_ary
@@ -346,5 +347,3 @@ module Sai
     end
   end
 end
-
-Sai.events.emit_load(Sai::Core::Matrix)

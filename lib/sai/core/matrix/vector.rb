@@ -20,7 +20,7 @@ module Sai
         end
 
         def initialize(*elements, orientation: :row)
-          @elements    = elements.flatten
+          @elements    = elements.flat_map { |e| Model.implemented_by?(e) ? e.components.to_normalized : e }
           @orientation = orientation
         end
 
@@ -67,5 +67,3 @@ module Sai
     end
   end
 end
-
-Sai.events.emit_load(Sai::Core::Matrix::Vector)

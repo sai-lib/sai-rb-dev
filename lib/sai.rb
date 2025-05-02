@@ -7,12 +7,20 @@ module Sai
   EMPTY_HASH = {}.freeze
   private_constant :EMPTY_HASH
 
-  autoload :Core, 'sai/core'
+  FRACTION_RANGE = 0.0..1.0
+  private_constant :FRACTION_RANGE
+
+  PERCENTAGE_RANGE = 0.0..100.0
+  private_constant :PERCENTAGE_RANGE
+
+  autoload :Core,  'sai/core'
+  autoload :Model, 'sai/model'
 
   autoload :ConfigurationError,     'sai/errors/configuration_error'
   autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'
   autoload :Error,                  'sai/errors/error'
   autoload :IdentityError,          'sai/errors/identity_error'
+  autoload :InvalidColorValueError, 'sai/errors/invalid_color_value_error'
   autoload :InvalidDataFileError,   'sai/errors/invalid_data_file_error'
   autoload :MatrixError,            'sai/errors/matrix_error'
   autoload :ZeroDeterminantError,   'sai/errors/zero_determinant_error'

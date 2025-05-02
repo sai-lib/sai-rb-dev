@@ -2,6 +2,7 @@
 
 module Sai
   module Core
+    autoload :Concurrency, 'sai/core/concurrency'
     autoload :Inflection, 'sai/core/inflection'
   end
 end

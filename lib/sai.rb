@@ -19,6 +19,7 @@ module Sai
   autoload :Core,                         'sai/core'
   autoload :Formula,                      'sai/formula'
   autoload :Model,                        'sai/model'
+  autoload :Illuminant,                   'sai/illuminant'
   autoload :Observer,                     'sai/observer'
   autoload :Spectral,                     'sai/spectral'
 

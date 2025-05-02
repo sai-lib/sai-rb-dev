@@ -57,6 +57,8 @@ module Sai
       alias default_cct_formula default_correlated_color_temperature_formula
       alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+      default(:illuminant) { Illuminant::D65 }
+
       default(:observer) { Observer::CIE_1931 }
 
       validates :cache_store, 'must be a `Sai::Core::Cache::Store`' do |store|
@@ -78,6 +80,10 @@ module Sai
       validates :correlated_color_temperature_formula,
                 'must be a `Sai::Formula::CorrelatedColorTemperature`' do |formula|
         formula.is_a?(Formula::CorrelatedColorTemperature)
+      end
+
+      validates :illuminant, 'must be a `Sai::Illuminant`' do |illuminant|
+        illuminant.is_a?(Illuminant)
       end
 
       validates :observer, 'must be a `Sai::Observer`' do |observer|

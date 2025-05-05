@@ -53,6 +53,8 @@ module Sai
 
       default(:cone_transform) { ChromaticAdaptationTransform::HUNT_POINTER_ESTEVEZ }
 
+      default(:contrast_formula) { Formula::Contrast::APCA }
+
       default(:correlated_color_temperature_formula) { Formula::CorrelatedColorTemperature::Ohno }
       alias default_cct_formula default_correlated_color_temperature_formula
       alias set_default_cct_formula set_default_correlated_color_temperature_formula
@@ -79,6 +81,10 @@ module Sai
 
       validates :cone_transform, 'must be a `Sai::ChromaticAdaptationTransform`' do |cat|
         cat.is_a?(ChromaticAdaptationTransform)
+      end
+
+      validates :contrast_formula, 'must be a `Sai::Formula::Contrast`' do |formula|
+        formula.is_a?(Formula::Contrast)
       end
 
       validates :correlated_color_temperature_formula,

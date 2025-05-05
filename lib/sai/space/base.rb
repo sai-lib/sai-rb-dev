@@ -10,6 +10,7 @@ module Sai
       include Core::Comparison
       include Core::Configuration
       include Core::Context
+      include Core::Contrast
       include Core::Conversion
       include Core::Derivation
       include Core::Harmony

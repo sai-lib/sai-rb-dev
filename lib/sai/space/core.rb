@@ -7,6 +7,7 @@ module Sai
       autoload :Comparison,    'sai/space/core/comparison'
       autoload :Configuration, 'sai/space/core/configuration'
       autoload :Context,       'sai/space/core/context'
+      autoload :Contrast,      'sai/space/core/contrast'
       autoload :Conversion,    'sai/space/core/conversion'
       autoload :Derivation,    'sai/space/core/derivation'
       autoload :Gamut,         'sai/space/core/gamut'

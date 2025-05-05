@@ -59,6 +59,10 @@ module Sai
       alias default_cct_formula default_correlated_color_temperature_formula
       alias set_default_cct_formula set_default_correlated_color_temperature_formula
 
+      default(:distance_application) { Formula::Distance::Application::GRAPHIC_ARTS }
+
+      default(:distance_formula) { Formula::Distance::CIEDE2000 }
+
       default(:gamut_mapping_strategy) { Sai::Space::Gamut::Mapping::PERCEPTUAL }
 
       default(:illuminant) { Illuminant::D65 }
@@ -90,6 +94,15 @@ module Sai
       validates :correlated_color_temperature_formula,
                 'must be a `Sai::Formula::CorrelatedColorTemperature`' do |formula|
         formula.is_a?(Formula::CorrelatedColorTemperature)
+      end
+
+      validates :distance_application,
+                "must be one of #{Formula::Distance::Application::ALL.join(', ')}" do |application|
+        Formula::Distance::Application::ALL.include?(application)
+      end
+
+      validates :distance_formula, 'must be a `Sai::Formula::Distance`' do |formula|
+        formula.is_a?(Formula::Distance)
       end
 
       validates :gamut_mapping_strategy,

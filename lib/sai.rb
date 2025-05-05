@@ -22,6 +22,7 @@ module Sai
   autoload :Illuminant,                   'sai/illuminant'
   autoload :Observer,                     'sai/observer'
   autoload :Spectral,                     'sai/spectral'
+  autoload :Standard,                     'sai/standard'
 
   autoload :ConfigurationError,     'sai/errors/configuration_error'
   autoload :DimensionMismatchError, 'sai/errors/dimension_mismatch_error'

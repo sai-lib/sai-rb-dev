@@ -62,3 +62,7 @@ module Sai
     end
   end
 end
+
+def Sai(space_identifier, *components, **options) # rubocop:disable Naming/MethodName
+  Sai.public_send(space_identifier, *components, **options)
+end

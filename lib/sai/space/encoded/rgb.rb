@@ -278,7 +278,7 @@ module Sai
         end
 
         def to_cmy(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
 
           convert_to(CMY, rgb_space:, map_to_gamut: true, **options) do
             nr, ng, nb = to_a
@@ -291,7 +291,7 @@ module Sai
         end
 
         def to_cmyk(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
 
           convert_to(CMYK, rgb_space:, map_to_gamut: true, **options) do
             nr, ng, nb = normalized = to_a
@@ -317,13 +317,13 @@ module Sai
         end
 
         def to_hsb(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
 
           convert_to(HSB, rgb_space:, map_to_gamut: true, **options) { to_hsv(rgb_space:, **options).to_a }
         end
 
         def to_hsl(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
 
           convert_to(HSL, rgb_space:, map_to_gamut: true, **options) do
             nr, ng, nb = normalized = to_a
@@ -362,7 +362,7 @@ module Sai
         end
 
         def to_hsv(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
 
           convert_to(HSV, rgb_space:, map_to_gamut: true, **options) do
             nr, ng, nb = normalized = to_a
@@ -393,7 +393,7 @@ module Sai
         end
 
         def to_rgb(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, self.class))
+          rgb_space = options.fetch(:rgb_space, self.class)
           return self if rgb_space == self.class
 
           convert_to(rgb_space, map_to_gamut: true, **options) do |context|

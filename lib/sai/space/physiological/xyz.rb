@@ -98,7 +98,7 @@ module Sai
         end
 
         def to_rgb(**options)
-          rgb_space = options.fetch(:rgb_space, options.fetch(:space, Sai.config.default_rgb_space))
+          rgb_space = options.fetch(:rgb_space, Sai.config.default_rgb_space)
 
           convert_to(rgb_space, map_to_gamut: true, **options) do |context|
             matrix = rgb_space.from_xyz_matrix

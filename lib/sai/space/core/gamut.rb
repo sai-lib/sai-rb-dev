@@ -106,7 +106,7 @@ module Sai
                                    "#{Space::Gamut::Mapping::ALL.join(', ')}, got: #{strategy.inspect}"
             end
 
-            rgb_space = RGBSpaceResolver.call(self, options.fetch(:rgb_space, options[:space]))
+            rgb_space = RGBSpaceResolver.call(self, options[:rgb_space])
 
             case strategy
             when Space::Gamut::Mapping::PERCEPTUAL then perceptually_map_to_gamut(rgb_space)

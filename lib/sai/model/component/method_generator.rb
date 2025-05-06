@@ -17,23 +17,85 @@ module Sai
             end
 
             define_component_derivative_method(base, :contract, component) do |component_value, amount|
-              component_value / amount
+              if component_value.zero? && amount > 1 && component.boundary.bound?
+                component_value =
+                  [component.normalize(component.boundary.maximum * 0.01), component.differential_step].min
+              end
+
+              result = component_value / amount
+
+              if component.boundary.bound?
+                denormalized = component.denormalize(result)
+                result = if denormalized > component.boundary.maximum
+                           component.normalize(component.boundary.maximum)
+                         elsif denormalized < component.boundary.minimum
+                           component.normalize(component.boundary.minimum)
+                         else
+                           result
+                         end
+              end
+
+              result
             end
 
             define_component_derivative_method(
               base, :decrement, component, include_default_value: true
             ) do |component_value, amount|
-              component_value - component.normalize(amount)
+              result = component_value - component.normalize(amount)
+
+              if component.boundary.bound?
+                denormalized = component.denormalize(result)
+                result = if denormalized > component.boundary.maximum
+                           component.normalize(component.boundary.maximum)
+                         elsif denormalized < component.boundary.minimum
+                           component.normalize(component.boundary.minimum)
+                         else
+                           result
+                         end
+              end
+
+              result
             end
 
             define_component_derivative_method(
               base, :increment, component, include_default_value: true
             ) do |component_value, amount|
-              component_value + component.normalize(amount)
+              result = component_value + component.normalize(amount)
+
+              if component.boundary.bound?
+                denormalized = component.denormalize(result)
+                result = if denormalized > component.boundary.maximum
+                           component.normalize(component.boundary.maximum)
+                         elsif denormalized < component.boundary.minimum
+                           component.normalize(component.boundary.minimum)
+                         else
+                           result
+                         end
+              end
+
+              result
             end
 
             define_component_derivative_method(base, :scale, component) do |component_value, amount|
-              component_value * amount
+              if component_value.zero? && amount > 1 && component.boundary.bound?
+                component_value =
+                  [component.normalize(component.boundary.maximum * 0.01), component.differential_step].min
+              end
+
+              result = component_value * amount
+
+              if component.boundary.bound?
+                denormalized = component.denormalize(result)
+                result = if denormalized > component.boundary.maximum
+                           component.normalize(component.boundary.maximum)
+                         elsif denormalized < component.boundary.minimum
+                           component.normalize(component.boundary.minimum)
+                         else
+                           result
+                         end
+              end
+
+              result
             end
           end
 

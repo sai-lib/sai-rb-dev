@@ -45,8 +45,6 @@ module Sai
           private
 
           def convert_to(space, normalized: true, map_to_gamut: false, **options)
-            debug = options.fetch(:debug, false)
-
             context_attributes = Space::Context.attribute_names
             context = space.native_context.nil? ? local_context : space.native_context
 
@@ -55,15 +53,12 @@ module Sai
             result = space.from_intermediate(
               *components, normalized:, **options.except(*context_attributes), **context.to_h
             )
-            puts "[DEBUG] #{identifier}(#{to_a.inspect}) -> #{space.identifier}(#{result.to_a.inspect})" if debug
 
             if context_attributes.any? { |k| options.key?(k) }
               result = result.with_context(**options.slice(*context_attributes))
-              puts "[DEBUG] after custom context application: #{result.identifier}(#{result.to_a.inspect})" if debug
             end
 
             result = result.map_to_gamut if map_to_gamut
-            puts "[DEBUG] after map_to_gamut: #{result.identifier}(#{result.to_a.inspect})" if debug
             result.with_opacity(opacity)
           end
 

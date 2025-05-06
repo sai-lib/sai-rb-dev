@@ -10,11 +10,16 @@ module Sai
         abstract_space
         implements Model::LCH
 
-        def to_lab_d50(**options)
-          convert_to(Lab::D50, **options) do |context|
+        def to_lab(**options)
+          space = case __callee__
+                  when :to_lab_d65 then Lab::D65
+                  else Lab::D50
+                  end
+
+          convert_to(space, **options) do |context|
             nl, nc, nh = with_context(**context.to_h).to_a
 
-            h_rad = nh * Math::PI / 180.0
+            h_rad = nh * 2 * Math::PI
 
             a = nc * Math.cos(h_rad)
             b = nc * Math.sin(h_rad)
@@ -22,7 +27,8 @@ module Sai
             [nl, a, b]
           end
         end
-        alias to_lab to_lab_d50
+        alias to_lab_d50 to_lab
+        alias to_lab_d65 to_lab
 
         def to_luv(**options)
           convert_to(Luv, **options) do |context|

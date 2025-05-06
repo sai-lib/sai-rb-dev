@@ -16,6 +16,7 @@ module Sai
       include Core::Harmony
       include Core::Gamut
       include Core::Introspection
+      include Core::Mixing
       include Core::Opacity
 
       abstract_space

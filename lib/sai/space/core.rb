@@ -13,6 +13,7 @@ module Sai
       autoload :Gamut,         'sai/space/core/gamut'
       autoload :Harmony,       'sai/space/core/harmony'
       autoload :Introspection, 'sai/space/core/introspection'
+      autoload :Mixing,        'sai/space/core/mixing'
       autoload :Opacity,       'sai/space/core/opacity'
     end
   end

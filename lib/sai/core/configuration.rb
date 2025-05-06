@@ -67,6 +67,8 @@ module Sai
 
       default(:illuminant) { Illuminant::D65 }
 
+      default(:mixing_strategy) { Space::MixStrategy::PERCEPTUALLY_WEIGHTED }
+
       default(:observer) { Observer::CIE_1931 }
 
       default(:rgb_space) { Space::Encoded::RGB::Standard }
@@ -112,6 +114,11 @@ module Sai
 
       validates :illuminant, 'must be a `Sai::Illuminant`' do |illuminant|
         illuminant.is_a?(Illuminant)
+      end
+
+      validates :mixing_strategy,
+                "must be one of #{Space::MixStrategy::ALL.join(', ')}" do |strategy|
+        Space::MixStrategy::ALL.include?(strategy)
       end
 
       validates :observer, 'must be a `Sai::Observer`' do |observer|

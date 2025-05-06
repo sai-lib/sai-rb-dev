@@ -14,9 +14,9 @@ module Sai
             ka = (175 / 198.04) * (rnx + rny)
             kb = (70.0 / 218.11) * (rny + rnz)
 
-            y = rny * ((nl / 100.0)**2)
-            p  = (na / ka) * Math.sqrt(y / rny)
-            q  = (nb / kb) * Math.sqrt(y / rny)
+            y = rny * (nl**2)
+            p = ((na / 100.0) / ka) * Math.sqrt(y / rny)
+            q = ((nb / 100.0) / kb) * Math.sqrt(y / rny)
 
             x = rnx * (p + (y / rny))
             z = rnz * ((y / rny) - q)

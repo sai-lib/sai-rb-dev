@@ -83,7 +83,7 @@ module Sai
         private
 
         def identity_attributes
-          [@base.class, to_unnormalized].freeze
+          [@base.class, to_unnormalized.map(&:to_f)].freeze
         end
       end
     end

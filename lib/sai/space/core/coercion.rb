@@ -52,42 +52,6 @@ module Sai
           def coerce(other)
             self.class.coerce(other)
           end
-
-          private
-
-          def initialize_copy(source)
-            super
-            %i[
-              @analogous
-              @blue
-              @brightness
-              @chroma
-              @chromaticity_uv
-              @chromaticity_xy
-              @complementary
-              @correlated_color_temperature
-              @cyan
-              @double_complementary
-              @green
-              @hexadecimal
-              @hue
-              @identity
-              @luminance
-              @magenta
-              @monochromatic
-              @perceptual_brightness
-              @perceptual_saturation
-              @red
-              @saturation
-              @shades
-              @split_complementary
-              @tetradic
-              @triadic
-              @yellow
-            ].each { |ivar| instance_variable_set(ivar, nil) }
-
-            self
-          end
         end
       end
     end

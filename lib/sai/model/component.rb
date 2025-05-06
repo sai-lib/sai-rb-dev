@@ -43,6 +43,7 @@ module Sai
         def with_components(normalized: false, **components)
           duped = dup
           duped.instance_variable_set(:@components, self.components.with(duped, normalized:, **components))
+          duped.send(:on_component_update)
           duped
         end
 
@@ -63,6 +64,8 @@ module Sai
 
           raise InvalidColorValueError, "#{self.class} values #{components.join(', ')} are invalid"
         end
+
+        def on_component_update; end
       end
     end
   end

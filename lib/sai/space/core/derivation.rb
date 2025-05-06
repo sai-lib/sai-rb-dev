@@ -10,9 +10,45 @@ module Sai
           def included(base)
             super
 
+            base.include BasicInstanceMethods
             base.include EncodedInstanceMethods
             base.include PerceptualInstanceMethods
             base.include PhysiologicalInstanceMethods
+          end
+        end
+
+        module BasicInstanceMethods
+          private
+
+          def on_component_update
+            %i[
+              @analogous
+              @blue
+              @brightness
+              @chroma
+              @chromaticity_uv
+              @chromaticity_xy
+              @complementary
+              @correlated_color_temperature
+              @cyan
+              @double_complementary
+              @green
+              @hexadecimal
+              @hue
+              @identity
+              @luminance
+              @magenta
+              @monochromatic
+              @perceptual_brightness
+              @perceptual_saturation
+              @red
+              @saturation
+              @shades
+              @split_complementary
+              @tetradic
+              @triadic
+              @yellow
+            ].each { |ivar| instance_variable_set(ivar, nil) }
           end
         end
 

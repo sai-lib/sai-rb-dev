@@ -392,6 +392,20 @@ module Sai
           end
         end
 
+        def to_oklab(**options)
+          convert_to(Perceptual::Oklab, **options) do
+            linear_srgb = to_srgb.to_a.map { |component| Standard.to_linear(component) }
+
+            rgb_matrix = Perceptual::Oklab::LINEAR_RGB_MATRIX
+            lms_linear = (rgb_matrix * rgb_matrix.column_vector(linear_srgb)).to_a.flatten
+
+            lms_nonlinear = lms_linear.map { |component| component**(1.0 / 3.0) }
+
+            lms_matrix = Perceptual::Oklab::LINEAR_LMS_MATRIX
+            (lms_matrix * lms_matrix.column_vector(lms_nonlinear)).to_a.flatten
+          end
+        end
+
         def to_rgb(**options)
           rgb_space = options.fetch(:rgb_space, self.class)
           return self if rgb_space == self.class

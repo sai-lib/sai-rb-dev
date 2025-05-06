@@ -88,8 +88,8 @@ module Sai
           convert_to(Perceptual::Oklab, **options) do |context|
             xyz = with_context(**context.to_h).to_a
 
-            m1 = Perceptual::Oklab::M1
-            m2 = Perceptual::Oklab::M2
+            m1 = Perceptual::Oklab::LINEAR_XYZ_MATRIX
+            m2 = Perceptual::Oklab::LINEAR_LMS_MATRIX
 
             lms = (m1 * m1.column_vector(xyz)).to_a.flatten
             prime = lms.map { |component| component**(1.0 / 3.0) }

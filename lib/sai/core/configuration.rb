@@ -133,20 +133,35 @@ module Sai
         self.class.defaults.each_pair do |attribute, config|
           instance_variable_set(:"@default_#{attribute}", config[:value])
         end
+        @conversion_caching_enabled = true
+      end
+
+      def conversion_caching_enabled?
+        @conversion_caching_enabled
       end
 
       def disable_caching
         set_default_cache_store(Cache::NullStore)
         set_default_cache_options({})
+        disable_conversion_caching
 
         Sai.send(:mutex).synchronize { Sai.instance_variable_set(:@cache, nil) }
+      end
+
+      def disable_conversion_caching
+        mutex.synchronize { @conversion_caching_enabled = false }
       end
 
       def enable_caching(store: Cache::LRUStore, **options)
         set_default_cache_store(store)
         set_default_cache_options(options)
+        enable_conversion_caching
 
         Sai.send(:mutex).synchronize { Sai.instance_variable_set(:@cache, nil) }
+      end
+
+      def enable_conversion_caching
+        mutex.synchronize { @conversion_caching_enabled = true }
       end
     end
   end

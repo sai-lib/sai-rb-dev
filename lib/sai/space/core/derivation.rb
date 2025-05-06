@@ -49,6 +49,8 @@ module Sai
               @triadic
               @yellow
             ].each { |ivar| instance_variable_set(ivar, nil) }
+
+            @conversions = EMPTY_HASH
           end
         end
 

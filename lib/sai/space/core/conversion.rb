@@ -10,6 +10,7 @@ module Sai
           def included(base)
             super
 
+            base.include Sai::Core::Concurrency
             base.include BasicInstanceMethods
             base.include EncodedInstanceMethods
             base.include PerceptualInstanceMethods
@@ -44,11 +45,25 @@ module Sai
 
           private
 
+          def conversions
+            concurrent_instance_variable_fetch(:@conversions, EMPTY_HASH)
+          end
+
           def convert_to(space, normalized: true, map_to_gamut: false, **options)
+            cache_enabled = Sai.config.conversion_caching_enabled?
             context_attributes = Space::Context.attribute_names
             context = space.native_context.nil? ? local_context : space.native_context
 
-            components = Sai.cache.fetch(self.class, :"to_#{space.identifier}", identity) { yield(context) }
+            components = if cache_enabled && conversions.key?(space.identifier)
+                           conversions[space.identifier]
+                         else
+                           Sai.cache.fetch(self.class, :"to_#{space.identifier}", identity) { yield(context) }
+                         end
+
+            if cache_enabled && !conversions.key?(space.identifier)
+              new_conversions = conversions.merge(space.identifier => components).freeze
+              mutex.synchronize { @conversions = new_conversions }
+            end
 
             result = space.from_intermediate(
               *components, normalized:, **options.except(*context_attributes), **context.to_h
@@ -59,7 +74,14 @@ module Sai
             end
 
             result = result.map_to_gamut if map_to_gamut
-            result.with_opacity(opacity)
+            result = result.with_opacity(opacity)
+
+            if cache_enabled
+              new_conversions = result.send(:conversions).merge(**conversions).merge(identifier => to_a).freeze
+              result.send(:mutex).synchronize { result.instance_variable_set(:@conversions, new_conversions) }
+            end
+
+            result
           end
 
           def convert_to_self(**options)

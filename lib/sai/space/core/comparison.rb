@@ -27,7 +27,13 @@ module Sai
               raise TypeError, "`:formula` is invalid. Expected `Sai::Formula::Distance`, got: #{formula.inspect}"
             end
 
-            others = others.map { |other| coerce(other) }
+            others = others.flat_map do |color_or_palette|
+              if color_or_palette.is_a?(Palette)
+                color_or_palette.colors.map { |color| coerce(color) }
+              else
+                coerce(color_or_palette)
+              end
+            end
 
             components = Sai.cache.fetch(self.class, :closest_match, identity, *others.flat_map(&:identity)) do
               calculations = others.map do |other|

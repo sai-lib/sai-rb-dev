@@ -22,6 +22,7 @@ module Sai
   autoload :Model,                        'sai/model'
   autoload :Illuminant,                   'sai/illuminant'
   autoload :Observer,                     'sai/observer'
+  autoload :Palette,                      'sai/palette'
   autoload :Space,                        'sai/space'
   autoload :Spectral,                     'sai/spectral'
   autoload :Standard,                     'sai/standard'

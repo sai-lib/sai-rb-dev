@@ -18,6 +18,7 @@ module Sai
   autoload :Chromaticity,                 'sai/chromaticity'
   autoload :Core,                         'sai/core'
   autoload :Formula,                      'sai/formula'
+  autoload :Function,                     'sai/function'
   autoload :Model,                        'sai/model'
   autoload :Illuminant,                   'sai/illuminant'
   autoload :Observer,                     'sai/observer'
@@ -37,6 +38,7 @@ module Sai
   autoload :ZeroDeterminantError,   'sai/errors/zero_determinant_error'
 
   extend Core::Concurrency
+  extend Function
 
   class << self
     def cache

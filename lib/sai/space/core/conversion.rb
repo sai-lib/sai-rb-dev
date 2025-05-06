@@ -207,6 +207,14 @@ module Sai
             to_rgb(...).to_hsv(...)
           end
 
+          def to_okhsl(...)
+            to_oklab(...).to_okhsl(...)
+          end
+
+          def to_okhsv(...)
+            to_oklab(...).to_okhsv(...)
+          end
+
           def to_rgb(rgb_space: Sai.config.default_rgb_space, **options)
             to_xyz(**options).to_rgb(rgb_space:, map_to_gamut: true, **options)
           end

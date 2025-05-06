@@ -30,6 +30,42 @@ module Sai
           "oklab(#{lightness} #{a} #{b}#{opacity_string})"
         end
 
+        def to_okhsl(**options)
+          convert_to(Encoded::Okhsl, **options) do
+            nl, na, nb = to_a
+
+            h_rad = Math.atan2(nb, na)
+            h = (h_rad / (2 * Math::PI)) % 1.0
+
+            c = Math.sqrt((na * na) + (nb * nb))
+            cusp = Support::OkMath.find_cusp(h)
+            max_c = Support::OkMath.max_chroma_for_lightness(cusp, nl)
+
+            s = (max_c.zero? ? 0.0 : c / max_c)
+
+            [h, s, nl]
+          end
+        end
+
+        def to_okhsv(**options)
+          convert_to(Encoded::Okhsv, **options) do
+            nl, na, nb = to_a
+
+            h_rad = Math.atan2(nb, na)
+            h = (h_rad / (2 * Math::PI)) % 1.0
+
+            c = Math.sqrt((na * na) + (nb * nb))
+            v = Support::OkMath.toe(nl)
+
+            cusp = Support::OkMath.find_cusp(h)
+            c_max = Support::OkMath.max_chroma_for_lightness(cusp, nl)
+
+            s = (c_max.zero? ? 0.0 : c / c_max)
+
+            [h, s, v]
+          end
+        end
+
         def to_oklab(...)
           convert_to_self(...)
         end

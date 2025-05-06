@@ -10,6 +10,7 @@ module Sai
     autoload :MixStrategy,   'sai/space/mix_strategy'
     autoload :Perceptual,    'sai/space/perceptual'
     autoload :Physiological, 'sai/space/physiological'
+    autoload :Support,       'sai/space/support'
     autoload :TypeFacade,    'sai/space/type_facade'
 
     extend TypeFacade

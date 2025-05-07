@@ -32,24 +32,26 @@ module Sai
             lu = (nu * 200.0) - 100.0
             lv = (nv * 200.0) - 100.0
 
-            return [0.0, 0.0, 0.0] if ll <= 0.0
+            if ll <= 0.0
+              [0.0, 0.0, 0.0]
+            else
+              nup = 4.0 * xn / (xn + (15.0 * yn) + (3.0 * zn))
+              nvp = 9.0 * yn / (xn + (15.0 * yn) + (3.0 * zn))
 
-            nup = 4.0 * xn / (xn + (15.0 * yn) + (3.0 * zn))
-            nvp = 9.0 * yn / (xn + (15.0 * yn) + (3.0 * zn))
+              up = (lu / (13.0 * ll)) + nup
+              vp = (lv / (13.0 * ll)) + nvp
 
-            up = (lu / (13.0 * ll)) + nup
-            vp = (lv / (13.0 * ll)) + nvp
+              y = if ll > 8.0
+                    yn * (((ll + 16.0) / 116.0)**3)
+                  else
+                    yn * ll / 903.3
+                  end
 
-            y = if ll > 8.0
-                  yn * (((ll + 16.0) / 116.0)**3)
-                else
-                  yn * ll / 903.3
-                end
+              x = y * 9.0 * up / (4.0 * vp)
+              z = y * (12.0 - (3.0 * up) - (20.0 * vp)) / (4.0 * vp)
 
-            x = y * 9.0 * up / (4.0 * vp)
-            z = y * (12.0 - (3.0 * up) - (20.0 * vp)) / (4.0 * vp)
-
-            [x, y, z]
+              [x, y, z]
+            end
           end
         end
       end

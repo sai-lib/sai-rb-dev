@@ -62,25 +62,27 @@ module Sai
             vn_prime = 9.0 * wpy / (wpx + (15.0 * wpy) + (3.0 * wpz))
 
             denominator = nx + (15.0 * ny) + (3.0 * nz)
-            return [0.0, 0.0, 0.0] if denominator.zero?
+            if denominator.zero?
+              [0.0, 0.0, 0.0]
+            else
+              u_prime = 4.0 * nx / denominator
+              v_prime = 9.0 * ny / denominator
 
-            u_prime = 4.0 * nx / denominator
-            v_prime = 9.0 * ny / denominator
+              l = if ny / wpy > 0.008856
+                    (116.0 * ((ny / wpy)**(1.0 / 3.0))) - 16.0
+                  else
+                    903.3 * (ny / wpy)
+                  end
 
-            l = if ny / wpy > 0.008856
-                  (116.0 * ((ny / wpy)**(1.0 / 3.0))) - 16.0
-                else
-                  903.3 * (ny / wpy)
-                end
+              u = 13.0 * l * (u_prime - un_prime)
+              v = 13.0 * l * (v_prime - vn_prime)
 
-            u = 13.0 * l * (u_prime - un_prime)
-            v = 13.0 * l * (v_prime - vn_prime)
+              l_normalized = l / 100.0
+              u_normalized = (u + 100.0) / 200.0
+              v_normalized = (v + 100.0) / 200.0
 
-            l_normalized = l / 100.0
-            u_normalized = (u + 100.0) / 200.0
-            v_normalized = (v + 100.0) / 200.0
-
-            [l_normalized, u_normalized, v_normalized]
+              [l_normalized, u_normalized, v_normalized]
+            end
           end
         end
 

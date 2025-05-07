@@ -8,6 +8,7 @@ module Sai
     autoload :Definition, 'sai/model/definition'
     autoload :HSL,        'sai/model/hsl'
     autoload :HSV,        'sai/model/hsv'
+    autoload :HWB,        'sai/model/hwb'
     autoload :LAB,        'sai/model/lab'
     autoload :LCH,        'sai/model/lch'
     autoload :LMS,        'sai/model/lms'

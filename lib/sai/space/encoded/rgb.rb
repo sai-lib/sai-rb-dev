@@ -392,6 +392,32 @@ module Sai
           end
         end
 
+        def to_hwb(**options)
+          rgb_space = options.fetch(:rgb_space, self.class)
+
+          convert_to(HWB, rgb_space:, map_to_gamut: true, **options) do
+            nr, ng, nb = normalized = to_a
+            max        = normalized.max
+            min        = normalized.min
+            delta      = max - min
+
+            h = if delta.zero?
+                  0.0
+                elsif max == nr
+                  ((ng - nb) / delta) % 6.0
+                elsif max == ng
+                  ((nb - nr) / delta) + 2
+                elsif max == nb
+                  ((nr - ng) / delta) + 4
+                end
+            w = min
+            h /= 6.0
+            hb = 1 - max
+
+            [h, w, hb]
+          end
+        end
+
         def to_oklab(**options)
           convert_to(Perceptual::Oklab, **options) do
             linear_srgb = to_srgb.to_a.map { |component| Standard.to_linear(component) }

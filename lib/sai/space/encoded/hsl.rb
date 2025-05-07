@@ -32,6 +32,27 @@ module Sai
           end
         end
 
+        def to_hwb(**options)
+          convert_to_encoded(HWB, **options) do
+            nh, ns, nl = to_a
+
+            v = if nl <= 0.5
+                  nl * (1.0 + ns)
+                else
+                  (nl + ns) - (nl * ns)
+                end
+
+            if v.zero?
+              [nh, 0.0, 1.0]
+            else
+              sv = 2 * (v - nl) / v
+              w = v * (1.0 - sv)
+              b = 1.0 - v
+              [nh, w, b]
+            end
+          end
+        end
+
         def to_rgb(**options)
           convert_to_rgb(**options) do
             nh, ns, nl = to_a

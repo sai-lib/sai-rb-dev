@@ -165,6 +165,10 @@ module Sai
         Space::Encoded::HSV.new(...)
       end
 
+      def hwb(...)
+        Space::Encoded::HWB.new(...)
+      end
+
       def rgb(*components, **options)
         rgb_space = options.fetch(:rgb_space, options.fetch(:space, Sai.config.default_rgb_space))
         rgb_space.new(*components, **options)

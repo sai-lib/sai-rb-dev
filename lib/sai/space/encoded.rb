@@ -9,6 +9,7 @@ module Sai
       autoload :HSB,   'sai/space/encoded/hsb'
       autoload :HSL,   'sai/space/encoded/hsl'
       autoload :HSV,   'sai/space/encoded/hsv'
+      autoload :HWB,   'sai/space/encoded/hwb'
       autoload :Okhsl, 'sai/space/encoded/okhsl'
       autoload :Okhsv, 'sai/space/encoded/okhsv'
       autoload :RGB,   'sai/space/encoded/rgb'

@@ -27,6 +27,15 @@ module Sai
           convert_to_self(...)
         end
 
+        def to_hwb(**options)
+          convert_to_encoded(HWB, **options) do
+            nh, ns, nv = to_a
+            w = nv * (1.0 - ns)
+            b = 1.0 - nv
+            [nh, w, b]
+          end
+        end
+
         def to_rgb(**options)
           convert_to_rgb(**options) do
             nh, ns, nv = to_a

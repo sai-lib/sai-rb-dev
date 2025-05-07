@@ -229,6 +229,10 @@ module Sai
             to_rgb(...).to_hsv(...)
           end
 
+          def to_hwb(...)
+            to_rgb(...).to_hwb(...)
+          end
+
           def to_okhsl(...)
             to_oklab(...).to_okhsl(...)
           end

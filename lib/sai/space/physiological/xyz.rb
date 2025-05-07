@@ -15,9 +15,18 @@ module Sai
             ka = (175 / 198.04) * (rnx + rny)
             kb = (70.0 / 218.11) * (rny + rnz)
 
-            l = Math.sqrt(ny / rny)
-            a = (ka * (((nx / rnx) - (ny / rny)) / Math.sqrt(ny / rny))) * p_max
-            b = (kb * (((ny / rny) - (nz / rnz)) / Math.sqrt(ny / rny))) * p_max
+            y_ratio = ny / rny
+
+            if y_ratio.zero?
+              l = 0.0
+              a = 0.0
+              b = 0.0
+            else
+              l = Math.sqrt(y_ratio)
+              a = (ka * (((nx / rnx) - (ny / rny)) / l)) * p_max
+              b = (kb * (((ny / rny) - (nz / rnz)) / l)) * p_max
+            end
+
             [l, a, b]
           end
         end

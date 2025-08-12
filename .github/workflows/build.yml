@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
